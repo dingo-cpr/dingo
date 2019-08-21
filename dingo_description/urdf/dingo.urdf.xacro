@@ -34,10 +34,10 @@
     </transmission>
   </xacro:macro>
 
-  <xacro:wheel prefix="left">
+  <xacro:wheel prefix="front_left">
     <origin xyz="0.099 0.2259 0.03476" rpy="0 0 1.57" />
   </xacro:wheel>
-  <xacro:wheel prefix="right">
+  <xacro:wheel prefix="front_right">
     <origin xyz="0.099 -0.2259 0.03476" rpy="0 0 -1.57" />
   </xacro:wheel>
 
