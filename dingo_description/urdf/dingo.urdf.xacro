@@ -64,9 +64,11 @@
     </collision>
   </link>
 
-  <link name="imu_link" />
-  <joint name="imu_joint" type="fixed">
-    <parent link="chassis_link" />
+  <link name="imu_link"></link>
+
+  <joint name="imu_link_joint" type="fixed">
+    <origin xyz="-0.1 0 0" rpy="0 -1.571 -1.571" />
+    <parent link="base_link"/>
     <child link="imu_link" />
   </joint>
 
