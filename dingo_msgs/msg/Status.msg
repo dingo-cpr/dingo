@@ -16,6 +16,7 @@ float32 mcu_temperature
 
 # Monitoring the run/stop loop. Changes in these values trigger an immediate
 # publish, outside the ordinarily-scheduled 1Hz updates.
+#bool stop_power_status      # True indicates the stop loop is operational (ie. it is powered).
 bool stop_engaged           # True when a stop has been pressed on the robot.
 bool drivers_active         # False when a stop is asserted to the motor drivers.
 bool external_stop_present  # True indicates a external stop has been plugged in.
@@ -23,7 +24,7 @@ bool external_stop_present  # True indicates a external stop has been plugged in
 # Power connected readings
 bool shore_power_connected  # Indicates if AC power is connected.
 bool battery_connected      # Indicates if battery is connected.
-bool power_good_12v_user    # Indicates if the 12V user power is good.
+bool power_12v_user_nominal # Indicates if the 12V user power is good.
 
 # Voltage rails, in volts
 # Averaged over the message period
