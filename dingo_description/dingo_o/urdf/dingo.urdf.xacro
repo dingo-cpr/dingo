@@ -1,17 +1,21 @@
 <?xml version="1.0"?>
+<!-- TODO(tbaltovski): This is based heavily on the Ridgeback file
+     and may need many updates to reflect the actual dimensions
+     for Dingo-O
+ -->
 <robot name="dingo" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="wheel" params="prefix *joint_pose">
     <link name="${prefix}_wheel_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dingo_description/meshes/wheel.dae"/>
+          <mesh filename="package://dingo_description/dingo_o/meshes/wheel.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dingo_description/meshes/wheel.dae"/>
+          <mesh filename="package://dingo_description/dingo_o/meshes/wheel.dae"/>
         </geometry>
       </collision>
     </link>
@@ -53,13 +57,13 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://dingo_description/meshes/body.dae"/>
+        <mesh filename="package://dingo_description/dingo_o/meshes/body.dae"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://dingo_description/meshes/body_collision.stl"/>
+        <mesh filename="package://dingo_description/dingo_o/meshes/body_collision.stl"/>
       </geometry>
     </collision>
   </link>
