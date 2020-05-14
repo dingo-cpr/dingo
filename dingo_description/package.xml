@@ -5,21 +5,16 @@
   <description>The dingo_description package</description>
 
   <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
-  
+
   <license>BSD</license>
 
   <author email="tbaltovski@clearpathrobotics.com">Tony Baltovski</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>robot_state_publisher</build_depend>
-  <build_depend>urdf</build_depend>
-  <build_depend>xacro</build_depend>
-  <build_export_depend>robot_state_publisher</build_export_depend>
-  <build_export_depend>urdf</build_export_depend>
-  <build_export_depend>xacro</build_export_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>urdf</exec_depend>
-  <exec_depend>xacro</exec_depend>
+
+  <depend>robot_state_publisher</depend>
+  <depend>urdf</depend>
+  <depend>xacro</depend>
 
   <export>
   </export>

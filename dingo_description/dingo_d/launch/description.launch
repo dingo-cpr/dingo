@@ -1,6 +1,0 @@
-<launch>
-  <arg name="dingo_description" default="$(find dingo_description)/dingo_d/urdf/dingo.urdf.xacro"/>
-  <param name="robot_description"
-         command="$(find xacro)/xacro '$(arg dingo_description)' --inorder" />
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-</launch>
