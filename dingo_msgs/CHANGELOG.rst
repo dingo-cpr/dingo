@@ -2,8 +2,8 @@
 Changelog for package dingo_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.0 (2020-08-10)
+------------------
 * Redefined corner light order in Lights.msg
 * Added firmware_version string to Status message
 * Unified Dingo folders/files as much as possible, updated meshes, bumped CMake version and made roslaunch a test depend.
