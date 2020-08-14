@@ -7,10 +7,6 @@
     <rosparam command="load" file="$(dirname)/../config/control_diff.yaml" />
   </group>
 
-  <group if="$(optenv DINGO_CONTROL_EXTRAS 0)" >
-    <rosparam command="load" file="$(env DINGO_CONTROL_EXTRAS_PATH)" />
-  </group>
-
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
         args="dingo_joint_publisher dingo_velocity_controller" />
 
@@ -22,5 +18,9 @@
     <rosparam command="load" file="$(dirname)/../config/twist_mux.yaml" />
     <remap from="cmd_vel_out" to="dingo_velocity_controller/cmd_vel"/>
   </node>
+
+  <group if="$(optenv DINGO_CONTROL_EXTRAS 0)" >
+    <rosparam command="load" file="$(env DINGO_CONTROL_EXTRAS_PATH)" />
+  </group>
 
 </launch>
