@@ -18,7 +18,7 @@
                           topic="$(optenv DINGO_LASER_TOPIC front/scan)" />
 
       <joint name="$(optenv DINGO_LASER_MOUNT front)_laser_mount_joint" type="fixed">
-        <origin xyz="$(optenv DINGO_LASER_OFFSET 0.11 0 0)"
+        <origin xyz="$(optenv DINGO_LASER_OFFSET 0 0 0)"
                 rpy="$(optenv DINGO_LASER_RPY 0 0 0)" />
         <parent link="$(optenv DINGO_LASER_MOUNT front)_mount" />
         <child link="$(optenv DINGO_LASER_MOUNT front)_laser_mount" />
