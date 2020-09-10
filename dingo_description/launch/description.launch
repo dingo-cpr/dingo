@@ -3,15 +3,15 @@
 
   <group if="$(optenv DINGO_OMNI 0)">
     <param name="robot_description"
-           command="$(dirname)/../scripts/env_run
-                    $(dirname)/../urdf/configs/$(arg config)
-                    $(find xacro)/xacro $(dirname)/../urdf/dingo-o.urdf.xacro" />
+           command="$(find dingo_description)/scripts/env_run
+                    $(find dingo_description)/urdf/configs/$(arg config)
+                    $(find xacro)/xacro $(find dingo_description)/urdf/dingo-o.urdf.xacro" />
   </group>
   <group unless="$(optenv DINGO_OMNI 0)">
     <param name="robot_description"
-      command="$(dirname)/../scripts/env_run
-               $(dirname)/../urdf/configs/$(arg config)
-               $(find xacro)/xacro $(dirname)/../urdf/dingo-d.urdf.xacro" />
+      command="$(find dingo_description)/scripts/env_run
+               $(find dingo_description)/urdf/configs/$(arg config)
+               $(find xacro)/xacro $(find dingo_description)/urdf/dingo-d.urdf.xacro" />
   </group>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 </launch>
