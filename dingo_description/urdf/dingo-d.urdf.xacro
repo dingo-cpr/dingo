@@ -196,21 +196,15 @@
   </joint>
 
   <!--
-    Mounting points for accessories on the front/rear bumpers.
+    Mounting point for accessories on the front bumper.
     Use with caution, but thin sensors (e.g Raspberry Pi NoIR camera) could
-    be mounted here for low-budget, front/rear-facing capabilities
+    be mounted here for low-budget, front-facing capabilities
   -->
   <link name="front_bumper_mount"></link>
   <joint name="front_bumper_mount_joint" type="fixed">
     <origin xyz="0.274 0 0.0345125" rpy="0 0 0" />
     <parent link="chassis_link"/>
     <child link="front_bumper_mount" />
-  </joint>
-  <link name="rear_bumper_mount"></link>
-  <joint name="rear_bumper_mount_joint" type="fixed">
-    <origin xyz="-0.274 0 0.0345125" rpy="0 0 ${PI}" />
-    <parent link="chassis_link"/>
-    <child link="rear_bumper_mount" />
   </joint>
 
   <!-- Bring in simulation data for Gazebo. -->
