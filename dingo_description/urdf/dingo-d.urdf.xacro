@@ -171,12 +171,46 @@
     <child link="imu_link" />
   </joint>
 
-  <link name="front_mount"></link>
 
+  <!--
+    Mounting points for accessories in the top channel.
+    These are flush with the top of the robot and all oriented to face forwards
+  -->
+  <link name="front_mount"></link>
   <joint name="front_mount_joint" type="fixed">
-    <origin xyz="0.2 0 0.05" rpy="0 0 0" />
+    <origin xyz="0.2 0 0.068" rpy="0 0 0" />
     <parent link="chassis_link"/>
     <child link="front_mount" />
+  </joint>
+  <link name="mid_mount"></link>
+  <joint name="mid_mount_joint" type="fixed">
+    <origin xyz="0 0 0.067" rpy="0 0 0" />
+    <parent link="chassis_link"/>
+    <child link="mid_mount" />
+  </joint>
+  <link name="rear_mount"></link>
+  <joint name="rear_mount_joint" type="fixed">
+    <origin xyz="-0.2 0 0.068" rpy="0 0 0" />
+    <parent link="chassis_link"/>
+    <child link="rear_mount" />
+  </joint>
+
+  <!--
+    Mounting points for accessories on the front/rear bumpers.
+    Use with caution, but thin sensors (e.g Raspberry Pi NoIR camera) could
+    be mounted here for low-budget, front/rear-facing capabilities
+  -->
+  <link name="front_bumper_mount"></link>
+  <joint name="front_bumper_mount_joint" type="fixed">
+    <origin xyz="0.275 0 0.04" rpy="0 0 0" />
+    <parent link="chassis_link"/>
+    <child link="front_bumper_mount" />
+  </joint>
+  <link name="rear_bumper_mount"></link>
+  <joint name="rear_bumper_mount_joint" type="fixed">
+    <origin xyz="-0.275 0 0.04" rpy="0 0 ${PI}" />
+    <parent link="chassis_link"/>
+    <child link="rear_bumper_mount" />
   </joint>
 
   <!-- Bring in simulation data for Gazebo. -->
