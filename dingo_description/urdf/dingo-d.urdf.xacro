@@ -178,19 +178,19 @@
   -->
   <link name="front_mount"></link>
   <joint name="front_mount_joint" type="fixed">
-    <origin xyz="0.2 0 0.068" rpy="0 0 0" />
+    <origin xyz="0.224 0 0.064263" rpy="0 0 0" />
     <parent link="chassis_link"/>
     <child link="front_mount" />
   </joint>
   <link name="mid_mount"></link>
   <joint name="mid_mount_joint" type="fixed">
-    <origin xyz="0 0 0.067" rpy="0 0 0" />
+    <origin xyz="0 0 0.064263" rpy="0 0 0" />
     <parent link="chassis_link"/>
     <child link="mid_mount" />
   </joint>
   <link name="rear_mount"></link>
   <joint name="rear_mount_joint" type="fixed">
-    <origin xyz="-0.2 0 0.068" rpy="0 0 0" />
+    <origin xyz="-0.224 0 0.064263" rpy="0 0 0" />
     <parent link="chassis_link"/>
     <child link="rear_mount" />
   </joint>
@@ -202,13 +202,13 @@
   -->
   <link name="front_bumper_mount"></link>
   <joint name="front_bumper_mount_joint" type="fixed">
-    <origin xyz="0.275 0 0.04" rpy="0 0 0" />
+    <origin xyz="0.274 0 0.0345125" rpy="0 0 0" />
     <parent link="chassis_link"/>
     <child link="front_bumper_mount" />
   </joint>
   <link name="rear_bumper_mount"></link>
   <joint name="rear_bumper_mount_joint" type="fixed">
-    <origin xyz="-0.275 0 0.04" rpy="0 0 ${PI}" />
+    <origin xyz="-0.274 0 0.0345125" rpy="0 0 ${PI}" />
     <parent link="chassis_link"/>
     <child link="rear_bumper_mount" />
   </joint>
