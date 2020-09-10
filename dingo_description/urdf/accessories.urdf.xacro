@@ -10,9 +10,30 @@
     dingo_base/launch/base.launch
   -->
 
-  <!-- If enabled, generate the LASER payload (by default, a SICK LMS111). -->
+
+  <!--
+    Add a lidar sensor.  By default this is a SICK LMS1xx but can be changed with the
+    DINGO_LASER_MODEL environment variable. Valid model designations are:
+    - lms1xx (default) :: SICK LMS1xx
+    - ust10            :: Hokuyo UST10
+  -->
   <xacro:if value="$(optenv DINGO_LASER 0)">
-    <xacro:if value="$(optenv DINGO_LASER_HOKUYO 0)">
+    <xacro:property name="lidar_model" value="$(optenv DINGO_LASER_MODEL lms1xx)" />
+
+    <xacro:if value="${lidar_model == lms1xx}">
+      <xacro:include filename="$(find dingo_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
+      <xacro:sick_lms1xx_mount prefix="$(optenv DINGO_LASER_MOUNT front)"
+                         topic="$(optenv DINGO_LASER_TOPIC front/scan)"/>
+
+      <joint name="$(optenv DINGO_LASER_MOUNT front)_laser_mount_joint" type="fixed">
+        <origin xyz="$(optenv DINGO_LASER_OFFSET 0 0 0)"
+                rpy="$(optenv DINGO_LASER_RPY 0 0 0)" />
+        <parent link="$(optenv DINGO_LASER_MOUNT front)_mount" />
+        <child link="$(optenv DINGO_LASER_MOUNT front)_laser_mount" />
+      </joint>
+    </xacro:if>
+
+    <xacro:if value="${lidar_model == ust10}">
       <xacro:include filename="$(find dingo_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
       <xacro:hokuyo_ust10_mount prefix="$(optenv DINGO_LASER_MOUNT front)"
                           topic="$(optenv DINGO_LASER_TOPIC front/scan)" />
@@ -24,21 +45,17 @@
         <child link="$(optenv DINGO_LASER_MOUNT front)_laser_mount" />
       </joint>
     </xacro:if>
-
-    <xacro:unless value="$(optenv DINGO_LASER_HOKUYO 0)">
-      <xacro:include filename="$(find dingo_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
-      <xacro:sick_lms1xx_mount prefix="$(optenv DINGO_LASER_MOUNT front)"
-                         topic="$(optenv DINGO_LASER_TOPIC front/scan)"/>
-
-      <joint name="$(optenv DINGO_LASER_MOUNT front)_laser_mount_joint" type="fixed">
-        <origin xyz="$(optenv DINGO_LASER_OFFSET 0 0 0)"
-                rpy="$(optenv DINGO_LASER_RPY 0 0 0)" />
-        <parent link="$(optenv DINGO_LASER_MOUNT front)_mount" />
-        <child link="$(optenv DINGO_LASER_MOUNT front)_laser_mount" />
-      </joint>
-    </xacro:unless>
   </xacro:if>
 
+  <!--
+    Add an Intel RealSense family camera.  By default this is a D435, but can be changed with the
+    DINGO_REALSENSE_MODEL environment variable. Valid model designations are:
+    - d435 (default)
+    - d435i
+    - d415
+    - d455
+    - l515
+  -->
   <xacro:if value="$(optenv DINGO_REALSENSE 0)">
     <xacro:property name="rs_model" value="$(optenv DINGO_REALSENSE_MODEL d435)" />
 
