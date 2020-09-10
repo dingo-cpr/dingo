@@ -15,7 +15,6 @@
   <depend>robot_state_publisher</depend>
   <depend>urdf</depend>
   <depend>xacro</depend>
-  <exec_depend>hector_gazebo_plugins</exec_depend>
   <exec_depend>lms1xx</exec_depend>
   <exec_depend>realsense2_description</exec_depend>
 
