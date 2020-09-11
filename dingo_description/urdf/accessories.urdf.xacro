@@ -20,7 +20,7 @@
   <xacro:if value="$(optenv DINGO_LASER 0)">
     <xacro:property name="lidar_model" value="$(optenv DINGO_LASER_MODEL lms1xx)" />
 
-    <xacro:if value="${lidar_model == lms1xx}">
+    <xacro:if value="${lidar_model == 'lms1xx'}">
       <xacro:include filename="$(find dingo_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
       <xacro:sick_lms1xx_mount prefix="$(optenv DINGO_LASER_MOUNT front)"
                          topic="$(optenv DINGO_LASER_TOPIC front/scan)"/>
@@ -33,7 +33,7 @@
       </joint>
     </xacro:if>
 
-    <xacro:if value="${lidar_model == ust10}">
+    <xacro:if value="${lidar_model == 'ust10'}">
       <xacro:include filename="$(find dingo_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
       <xacro:hokuyo_ust10_mount prefix="$(optenv DINGO_LASER_MOUNT front)"
                           topic="$(optenv DINGO_LASER_TOPIC front/scan)" />
