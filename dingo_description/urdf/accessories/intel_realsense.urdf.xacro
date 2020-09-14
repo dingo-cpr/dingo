@@ -213,6 +213,9 @@
             <color rgba="1 1 1 1" />
           </material>
         </visual>
+        <gazebo>
+          <gravity>0</gravity>
+        </gazebo>
       </link>
       <link name="${prefix}_realsense_link">
         <visual>
@@ -222,6 +225,9 @@
           </geometry>
           <material name="black" />
         </visual>
+        <gazebo>
+          <gravity>0</gravity>
+        </gazebo>
       </link>
       <joint type="fixed" name="${prefix}_realsense_ring_to_lens">
         <parent link="${prefix}_realsense_bottom_screw_frame" />
