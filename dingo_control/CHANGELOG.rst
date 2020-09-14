@@ -2,6 +2,18 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Improve joy device configurability (`#4 <https://github.com/dingo-cpr/dingo/issues/4>`_)
+  * Remove the joy device from the yaml file, but keep it as the default in the launch file. Add support for a DINGO_JOY_DEV environment variable to override the default joy device.
+  * Add the ASCII art diagram of the controller from Husky to make it easier to interpret the button mappings, should anyone want to remap them.
+  * Expose the yaml file as an additional argument to the teleop launch file, allow overriding it with DINGO_JOY_CONFIG
+* [dingo_control] Added limits for y motion omni platform.
+* [dingo_control] Updated max velocity and acceleration limits.
+* [dingo_control] Updated robot_localization config.
+* [dingo_control] Moved control extras to botton of launch file.
+* Contributors: Chris I-B, Tony Baltovski
+
 0.1.0 (2020-08-10)
 ------------------
 * Fix the controller parameters for omni control; behaviour is now the same as ridgeback
