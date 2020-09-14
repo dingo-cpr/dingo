@@ -2,8 +2,8 @@
 Changelog for package dingo_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.1 (2020-09-14)
+------------------
 * Nav improvements (`#5 <https://github.com/dingo-cpr/dingo/issues/5>`_)
   * Expose the scan_topic argument in the gmapping_demo and amcl_demo launch files
   * Add placeholder support for the RS L515 and D455 so that the gazebo plugins work; the meshes for these sensors don't exist yet, but we can at least get the plugin configured & add the appropriate links for now

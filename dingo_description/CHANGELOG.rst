@@ -2,8 +2,8 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.1 (2020-09-14)
+------------------
 * Disable gravity on the L515 links; they were causing the odom frame to drift in gazebo
 * Nav improvements (`#5 <https://github.com/dingo-cpr/dingo/issues/5>`_)
   * Expose the scan_topic argument in the gmapping_demo and amcl_demo launch files

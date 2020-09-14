@@ -2,8 +2,8 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.1 (2020-09-14)
+------------------
 * Improve joy device configurability (`#4 <https://github.com/dingo-cpr/dingo/issues/4>`_)
   * Remove the joy device from the yaml file, but keep it as the default in the launch file. Add support for a DINGO_JOY_DEV environment variable to override the default joy device.
   * Add the ASCII art diagram of the controller from Husky to make it easier to interpret the button mappings, should anyone want to remap them.
