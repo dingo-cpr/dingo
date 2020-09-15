@@ -9,7 +9,8 @@
     The yaml file with the button mappings.
     If not set via DINGO_JOY_CONFIG, load the appropriate _diff or _omni file from this package
   -->
-  <arg name="joy_config" default="$(eval optenv('DINGO_JOY_CONFIG', find('dingo_control') + '/config/teleop_omni.yaml' if int(optenv('DINGO_OMNI', 0)) else find('dingo_control') + '/config/teleop_diff.yaml'))" />
+  <arg name="joy_config" default="$(eval optenv('DINGO_JOY_CONFIG', find('dingo_control') + '/config/teleop_omni.yaml'
+                          if int(optenv('DINGO_OMNI', 0)) else find('dingo_control') + '/config/teleop_diff.yaml'))" />
 
   <group if="$(optenv DINGO_OMNI 0)">
     <rosparam command="load" ns="bluetooth_teleop" file="$(arg joy_config)" />
