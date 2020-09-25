@@ -2,8 +2,8 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.2 (2020-09-25)
+------------------
 * [dingo_control] Reduced Dingo-O accelerations.
 * [dingo_control] Reduced line length.
 * [dingo_control] Removed linear accelerations from EKF.
