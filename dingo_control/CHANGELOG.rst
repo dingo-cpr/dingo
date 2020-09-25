@@ -2,6 +2,13 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [dingo_control] Reduced Dingo-O accelerations.
+* [dingo_control] Reduced line length.
+* [dingo_control] Removed linear accelerations from EKF.
+* Contributors: Tony Baltovski
+
 0.1.1 (2020-09-14)
 ------------------
 * Improve joy device configurability (`#4 <https://github.com/dingo-cpr/dingo/issues/4>`_)

@@ -2,6 +2,9 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.1.1 (2020-09-14)
 ------------------
 * Disable gravity on the L515 links; they were causing the odom frame to drift in gazebo
