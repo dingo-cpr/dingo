@@ -30,7 +30,7 @@ dingo_velocity_controller:
       has_velocity_limits    : true
       max_velocity           : 1.3   # m/s
       has_acceleration_limits: true
-      max_acceleration       : 2.5   # m/s^2
+      max_acceleration       : 1.0   # m/s^2
   # TODO: measure on actual vehicle: how?
   angular:
     z:
