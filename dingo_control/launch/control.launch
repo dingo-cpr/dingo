@@ -1,4 +1,6 @@
 <launch>
+  <arg name="config_extras"
+       default="$(eval optenv('DINGO_CONFIG_EXTRAS', find('dingo_control') + '/config/empty.yaml'))"/>
 
   <group if="$(optenv DINGO_OMNI 0)">
     <rosparam command="load" file="$(dirname)/../config/control_omni.yaml" />
@@ -19,8 +21,6 @@
     <remap from="cmd_vel_out" to="dingo_velocity_controller/cmd_vel"/>
   </node>
 
-  <group if="$(optenv DINGO_CONTROL_EXTRAS 0)" >
-    <rosparam command="load" file="$(env DINGO_CONTROL_EXTRAS_PATH)" />
-  </group>
+  <rosparam command="load" file="$(arg config_extras)" />
 
 </launch>
