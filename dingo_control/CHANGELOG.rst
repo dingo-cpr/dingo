@@ -2,8 +2,8 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.3 (2020-09-29)
+------------------
 * Remove the 0/1 DINGO_CONTROL_EXTRAS + DINGO_CONTROL_EXTRAS_PATH, simplify to just DINGO_CONFIG_EXTRAS, like Husky & Warthog. (`#6 <https://github.com/dingo-cpr/dingo/issues/6>`_)
 * [dingo_control] Reduced linear acceleration limits.
 * Contributors: Chris I-B, Tony Baltovski
