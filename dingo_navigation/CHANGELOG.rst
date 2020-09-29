@@ -2,6 +2,12 @@
 Changelog for package dingo_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Make the default scan topic for gmapping + amcl use the env vars (`#7 <https://github.com/dingo-cpr/dingo/issues/7>`_)
+  Load the DINGO_LASER_TOPIC env var as the default scan topic for nav demos
+* Contributors: Chris I-B
+
 0.1.2 (2020-09-25)
 ------------------
 
