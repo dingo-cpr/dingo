@@ -1,17 +1,10 @@
 <launch>
   <arg name="config" default="$(optenv DINGO_CONFIG base)" />
 
-  <group if="$(optenv DINGO_OMNI 0)">
-    <param name="robot_description"
-           command="$(find dingo_description)/scripts/env_run
-                    $(find dingo_description)/urdf/configs/$(arg config)
-                    $(find xacro)/xacro $(find dingo_description)/urdf/dingo-o.urdf.xacro" />
-  </group>
-  <group unless="$(optenv DINGO_OMNI 0)">
-    <param name="robot_description"
-      command="$(find dingo_description)/scripts/env_run
-               $(find dingo_description)/urdf/configs/$(arg config)
-               $(find xacro)/xacro $(find dingo_description)/urdf/dingo-d.urdf.xacro" />
-  </group>
+  <param name="robot_description"
+         command="$(find dingo_description)/scripts/env_run
+                  $(find dingo_description)/urdf/configs/$(arg config)
+                  $(find xacro)/xacro $(find dingo_description)/urdf/dingo.urdf.xacro" />
+
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 </launch>
