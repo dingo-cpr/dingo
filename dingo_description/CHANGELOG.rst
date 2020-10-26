@@ -2,6 +2,13 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [dingo_description] Switched description.launch to use single Dingo URDF which then determines which file should be loaded.
+* Add a generic dingo.urdf.xacro (`#8 <https://github.com/dingo-cpr/dingo/issues/8>`_)
+  * Add a generic dingo.urdf.xacro which will include dingo-d or dingo-o as-needed. This simplifies adding support for manipulators to the robot
+* Contributors: Chris I-B, Tony Baltovski
+
 0.1.3 (2020-09-29)
 ------------------
 

@@ -2,6 +2,11 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [dingo_control] Fixed angular axis.
+* Contributors: Tony Baltovski
+
 0.1.3 (2020-09-29)
 ------------------
 * Remove the 0/1 DINGO_CONTROL_EXTRAS + DINGO_CONTROL_EXTRAS_PATH, simplify to just DINGO_CONFIG_EXTRAS, like Husky & Warthog. (`#6 <https://github.com/dingo-cpr/dingo/issues/6>`_)
