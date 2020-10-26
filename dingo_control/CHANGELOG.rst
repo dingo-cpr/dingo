@@ -2,8 +2,8 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.4 (2020-10-26)
+------------------
 * [dingo_control] Fixed angular axis.
 * Contributors: Tony Baltovski
 
