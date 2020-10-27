@@ -12,7 +12,6 @@ add_message_files(
   Lights.msg
   Status.msg
   RGB.msg
-  Power.msg
 )
 
 generate_messages(
