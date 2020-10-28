@@ -124,24 +124,58 @@
 
   <!--
     Mounting points for accessories in the top channel.
-    These are flush with the top of the robot and all oriented to face forwards
+    These are flush with the top of the robot and all oriented to face forwards.
+    Dingo-D has 6 evenly-spaced 80mm mounts
+    We name the mounts (from front to back)
+      - front
+      - front b
+      - front c
+      - mid
+      - rear c
+      - rear b
+      - rear
   -->
-  <link name="front_mount"></link>
-  <joint name="front_mount_joint" type="fixed">
-    <origin xyz="0.29159 0 0.069023" rpy="0 0 0" />
-    <parent link="chassis_link"/>
-    <child link="front_mount" />
-  </joint>
-  <link name="mid_mount"></link>
+  <link name="front_mount"/>
+  <link name="front_b_mount"/>
+  <link name="front_c_mount"/>
+  <link name="rear_mount"/>
+  <link name="rear_b_mount"/>
+  <link name="rear_c_mount"/>
+  <link name="mid_mount"/>
+
   <joint name="mid_mount_joint" type="fixed">
     <origin xyz="0 0 0.069023" rpy="0 0 0" />
     <parent link="chassis_link"/>
     <child link="mid_mount" />
   </joint>
-  <link name="rear_mount"></link>
-  <joint name="rear_mount_joint" type="fixed">
-    <origin xyz="-0.29159 0 0.069023" rpy="0 0 0" />
-    <parent link="chassis_link"/>
+  <joint name="front_c_mount_joint" type="fixed">
+    <origin xyz="0.080 0 0" rpy="0 0 0" />
+    <parent link="mid_mount"/>
+    <child link="front_c_mount" />
+  </joint>
+  <joint name="front_b_mount_joint" type="fixed">
+    <origin xyz="0.080 0 0" rpy="0 0 0" />
+    <parent link="front_c_mount"/>
+    <child link="front_b_mount" />
+  </joint>
+  <joint name="front_mount_joint" type="fixed">
+    <origin xyz="0.080 0 0" rpy="0 0 0" />
+    <parent link="front_b_mount"/>
+    <child link="front_mount" />
+  </joint>
+  <joint name="rear_c_mount_joint" type="fixed">
+    <origin xyz="-0.080 0 0" rpy="0 0 0" />
+    <parent link="mid_mount"/>
+    <child link="rear_c_mount" />
+  </joint>
+  <joint name="rear_b_mount_joint" type="fixed">
+    <origin xyz="-0.080 0 0" rpy="0 0 0" />
+    <parent link="rear_c_mount"/>
+    <child link="rear_b_mount" />
+  </joint>
+  <joint name="rear_moint_joint" type="fixed">
+    <origin xyz="-0.080 0 0" rpy="0 0 0" />
+    <parent link="rear_b_mount"/>
     <child link="rear_mount" />
   </joint>
 
