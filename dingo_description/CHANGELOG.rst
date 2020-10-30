@@ -2,6 +2,11 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix the mount links for Dingo-D and Dingo-O; -D doesn't technically have a mid_mount (`#9 <https://github.com/dingo-cpr/dingo/issues/9>`_)
+* Contributors: Chris I-B
+
 0.1.4 (2020-10-26)
 ------------------
 * [dingo_description] Switched description.launch to use single Dingo URDF which then determines which file should be loaded.
