@@ -2,8 +2,8 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.5 (2020-10-30)
+------------------
 * [dingo_control] Reduced acceleration limit for omnidirectional platform.
 * Contributors: Tony Baltovski
 
