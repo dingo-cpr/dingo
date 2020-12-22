@@ -34,26 +34,28 @@
 #
 # BUTTON         Value
 #   L1             4
-#   L2             6
 #   R1             5
+#   L2             6
 #   R2             7
-#   A              1
-#   B              2
-#   X              0
-#   Y              3
+#   A              0     X button
+#   B              1     Circle button
+#   X              3     Square button
+#   Y              2     Triangle button
+# share            8
+# options          9
+#  PS             10
+#  LJ             11  joystick click
+#  RJ             12  joystick click
 #
 #    AXIS        Value
 # Left Horiz.      0
 # Left Vert.       1
-# Right Horiz.     2
-# Right Vert.      5
-#    L2            3
-#    R2            4
-# D-pad Horiz.     9
-# D-pad Vert.      10
-# Accel x          7
-# Accel y          6
-# Accel z          8
+# Right Horiz.     3
+# Right Vert.      4
+#    L2            2
+#    R2            5
+# D-pad Horiz.     6
+# D-pad Vert.      7
 
 teleop_twist_joy:
   axis_linear:
@@ -66,7 +68,7 @@ teleop_twist_joy:
     x: 2.0 # TODO: should this be 1.0?
     y: 2.0 # TODO: should this be 1.0?
   axis_angular:
-    yaw: 2
+    yaw: 3
   scale_angular:
     yaw: 1.4 # TODO: should this be 1.0?
   scale_angular_turbo:
