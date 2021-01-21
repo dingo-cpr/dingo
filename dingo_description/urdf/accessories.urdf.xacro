@@ -45,6 +45,13 @@
         <child link="$(optenv DINGO_LASER_MOUNT front)_laser_mount" />
       </joint>
     </xacro:if>
+
+    <xacro:if value="${lidar_model == 'vlp16'}">
+      <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
+      <xacro:VLP-16 parent="$(optenv DINGO_LASER_MOUNT front)_mount" topic="$(optenv DINGO_LASER_TOPIC front/points)">
+        <origin xyz="$(optenv DINGO_LASER_OFFSET 0 0 0)" rpy="$(optenv DINGO_LASER_RPY 0 0 0)" />
+      </xacro:VLP-16>
+    </xacro:if>
   </xacro:if>
 
   <!--
