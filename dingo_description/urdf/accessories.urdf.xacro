@@ -16,6 +16,7 @@
     DINGO_LASER_MODEL environment variable. Valid model designations are:
     - lms1xx (default) :: SICK LMS1xx
     - ust10            :: Hokuyo UST10
+    - vlp16            :: Velodyne VLP16
   -->
   <xacro:if value="$(optenv DINGO_LASER 0)">
     <xacro:property name="lidar_model" value="$(optenv DINGO_LASER_MODEL lms1xx)" />
