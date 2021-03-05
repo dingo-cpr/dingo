@@ -29,16 +29,3 @@ jobs:
       - uses: actions/checkout@v1
       - uses: 'ros-industrial/industrial_ci@master'
         env: ${{matrix.env}}
-        
-  dingo_kinetic_ci:
-    name: Kinetic
-    strategy:
-      matrix:
-        env:
-          - {ROS_DISTRO: kinetic, ROS_REPO: main}
-          - {ROS_DISTRO: kinetic, ROS_REPO: testing}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: 'ros-industrial/industrial_ci@master'
-        env: ${{matrix.env}}
