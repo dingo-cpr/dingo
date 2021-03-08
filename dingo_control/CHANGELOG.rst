@@ -2,6 +2,9 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.1.6 (2020-11-26)
 ------------------
 * [dingo_control] Increased acceleration limit for omnidirectional platform.
