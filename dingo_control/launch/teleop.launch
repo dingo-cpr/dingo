@@ -8,6 +8,8 @@
   <!--
     The yaml file with the button mappings.
     If not set via DINGO_JOY_CONFIG, load the appropriate _diff or _omni file from this package
+    If you have a Dingo-O and the yaw control is not working as-expected, try setting DINGO_JOY_CONFIG
+    to dingo_control/config/teleop_omni_ps4_legacy.yaml
   -->
   <arg name="joy_config" default="$(eval optenv('DINGO_JOY_CONFIG', find('dingo_control') + '/config/teleop_omni.yaml'
                           if int(optenv('DINGO_OMNI', 0)) else find('dingo_control') + '/config/teleop_diff.yaml'))" />

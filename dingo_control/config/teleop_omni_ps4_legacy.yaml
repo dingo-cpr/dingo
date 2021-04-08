@@ -1,6 +1,6 @@
-# Teleop configuration for PS4 controller.  Some newer controllers use a different
-# order for button and axis indices, which can cause problems when using Dingo-O.
-# If this occurs, try using teleop_omni_ps4_v2.yaml instead of this file.
+# Alternate PS4 controller mapping; some older PS4 controllers seem to use this mapping instead
+# On Dingo-D this won't make much difference, but for Dingo-O the yaw input can be mapped incorrectly
+# between the two versions.
 #
 # Left thumb-stick up/down/left/right for forward/backward/left/right translation
 # Right thumb-stick left/right for twist
@@ -40,20 +40,23 @@
 #   L2             6
 #   R1             5
 #   R2             7
-#   A              0       X-button
-#   B              1       Circle-button
-#   X              3       Squre-button
-#   Y              2       Triangle-button
+#   A              1
+#   B              2
+#   X              0
+#   Y              3
 #
 #    AXIS        Value
 # Left Horiz.      0
 # Left Vert.       1
-#    L2            2
-# Right Horiz.     3
-# Right Vert.      4
-#    R2            5
-# D-pad Horiz.     6
-# D-pad Vert.      7
+# Right Horiz.     2
+# Right Vert.      5
+#    L2            3
+#    R2            4
+# D-pad Horiz.     9
+# D-pad Vert.      10
+# Accel x          7
+# Accel y          6
+# Accel z          8
 
 teleop_twist_joy:
   axis_linear:
@@ -66,7 +69,7 @@ teleop_twist_joy:
     x: 2.0 # TODO: should this be 1.0?
     y: 2.0 # TODO: should this be 1.0?
   axis_angular:
-    yaw: 3
+    yaw: 2
   scale_angular:
     yaw: 1.4 # TODO: should this be 1.0?
   scale_angular_turbo:
