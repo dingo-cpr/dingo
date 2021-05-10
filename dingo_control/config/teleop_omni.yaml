@@ -45,10 +45,10 @@
 #    AXIS        Value
 # Left Horiz.      0
 # Left Vert.       1
-# Right Horiz.     2
-# Right Vert.      5
-#    L2            3
-#    R2            4
+# Right Horiz.     3
+# Right Vert.      4
+#    L2            2
+#    R2            5
 # D-pad Horiz.     9
 # D-pad Vert.      10
 # Accel x          7
@@ -66,7 +66,7 @@ teleop_twist_joy:
     x: 2.0 # TODO: should this be 1.0?
     y: 2.0 # TODO: should this be 1.0?
   axis_angular:
-    yaw: 2
+    yaw: 3
   scale_angular:
     yaw: 1.4 # TODO: should this be 1.0?
   scale_angular_turbo:
