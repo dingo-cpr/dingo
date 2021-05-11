@@ -2,8 +2,8 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.8 (2021-05-11)
+------------------
 * Update the axes to match the latest DS4DRV update; the left stick is now axes 3/4.
 * Contributors: Chris Iverach-Brereton
 
