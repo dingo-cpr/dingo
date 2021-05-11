@@ -2,6 +2,9 @@
 Changelog for package dingo_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.1.7 (2021-03-08)
 ------------------
 
