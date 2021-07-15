@@ -14,7 +14,6 @@
 
   <group if="$(optenv DINGO_OMNI 0)">
     <rosparam command="load" ns="bluetooth_teleop" file="$(arg joy_config)" />
-    <param name="joy_node/dev" value="$(arg joy_dev)" />
     <arg name="config" value="planar" />
     <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
       <rosparam command="load" file="$(find interactive_marker_twist_server)/config/$(arg config).yaml" />
@@ -22,7 +21,6 @@
   </group>
   <group unless="$(optenv DINGO_OMNI 0)">
     <rosparam command="load" ns="bluetooth_teleop" file="$(arg joy_config)" />
-    <param name="joy_node/dev" value="$(arg joy_dev)" />
     <arg name="config" value="linear" />
     <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
       <rosparam command="load" file="$(find interactive_marker_twist_server)/config/$(arg config).yaml" />
@@ -30,6 +28,7 @@
   </group>
 
   <group ns="bluetooth_teleop" if="$(arg joystick)">
+    <param name="joy_node/dev" value="$(arg joy_dev)" />
     <node pkg="joy" type="joy_node" name="joy_node" />
     <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
   </group>
