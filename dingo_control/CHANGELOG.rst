@@ -2,8 +2,8 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.9 (2021-07-16)
+------------------
 * Change where we load the joy_dev argument so it loads correctly
 * Contributors: Chris Iverach-Brereton
 
