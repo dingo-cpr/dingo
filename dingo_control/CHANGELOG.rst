@@ -2,6 +2,11 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Change where we load the joy_dev argument so it loads correctly
+* Contributors: Chris Iverach-Brereton
+
 0.1.8 (2021-05-11)
 ------------------
 * Update the axes to match the latest DS4DRV update; the left stick is now axes 3/4.
