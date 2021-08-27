@@ -1,26 +1,5 @@
 <?xml version="1.0"?>
 <robot>
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-  </gazebo>
-
-  <gazebo>
-    <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
-      <robotNamespace>/</robotNamespace>
-      <updateRate>50.0</updateRate>
-      <bodyName>imu_link</bodyName>
-      <topicName>imu/data</topicName>
-      <accelDrift>0.005 0.005 0.005</accelDrift>
-      <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
-      <rateDrift>0.005 0.005 0.005 </rateDrift>
-      <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
-      <headingDrift>0.005</headingDrift>
-      <headingGaussianNoise>0.005</headingGaussianNoise>
-    </plugin>
-  </gazebo>
-
   <gazebo reference="base_link">
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
@@ -28,8 +7,64 @@
   <gazebo reference="chassis_link">
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+
   <gazebo reference="imu_link">
     <turnGravityOff>false</turnGravityOff>
+		<sensor name="imu_sensor" type="imu">
+			<always_on>true</always_on>
+			<update_rate>50</update_rate>
+			<visualize>false</visualize>
+			<imu>
+				<angular_velocity>
+					<x>
+						<noise type="gaussian">
+							<mean>0.005</mean>
+							<stddev>0.005</stddev>
+						</noise>
+					</x>
+					<y>
+						<noise type="gaussian">
+							<mean>0.005</mean>
+							<stddev>0.005</stddev>
+						</noise>
+					</y>
+					<z>
+						<noise type="gaussian">
+							<mean>0.005</mean>
+							<stddev>0.005</stddev>
+						</noise>
+					</z>
+				</angular_velocity>
+				<linear_acceleration> 
+					<x>
+						<noise type="gaussian_quantized">
+							<mean>0.005</mean>
+							<stddev>0.005</stddev>
+						</noise>
+					</x>
+					<y>
+						<noise type="gaussian_quantized">
+							<mean>0.005</mean>
+							<stddev>0.005</stddev>
+						</noise>
+					</y>
+					<z>
+						<noise type="gaussian_quantized">
+							<mean>0.005</mean>
+							<stddev>0.005</stddev>
+						</noise>
+					</z>
+				</linear_acceleration>
+			</imu>
+			<plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+				<ros>
+					<remapping>~/out:=imu/data</remapping>
+				</ros>
+				<frame_name>imu_link</frame_name>
+				<initial_orientation_as_reference>false</initial_orientation_as_reference>
+			</plugin>
+			<pose>0 0 0 0 0 0</pose>
+		</sensor>
   </gazebo>
 
 </robot>

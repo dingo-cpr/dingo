@@ -22,7 +22,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dingo_description/meshes/wheel.stl"/>
+          <mesh filename="file://$(find dingo_description)/meshes/wheel.stl"/>
         </geometry>
         <material name="black" />
       </visual>
@@ -58,16 +58,6 @@
       <xacro:insert_block name="joint_pose" />
       <axis xyz="0 1 0" />
     </joint>
-
-    <transmission name="${prefix}_wheel_trans">
-      <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${prefix}_wheel">
-        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-      </joint>
-      <actuator name="${prefix}_actuator">
-        <mechanicalReduction>1</mechanicalReduction>
-      </actuator>
-    </transmission>
   </xacro:macro>
 
   <xacro:wheel prefix="left">
@@ -138,20 +128,20 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://dingo_description/meshes/diff_chassis.dae"/>
+        <mesh filename="file://$(find dingo_description)/meshes/diff_chassis.dae"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://dingo_description/meshes/diff_chassis_collision.stl"/>
+        <mesh filename="file://$(find dingo_description)/meshes/diff_chassis_collision.stl"/>
       </geometry>
     </collision>
     <inertial>
       <!-- Center of mass -->
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="10.0"/>
-      <!-- Moments of inertia: ( chassis without wheels ) -->
+      <!-- Moments of inertia ( chassis without wheels ) -->
       <inertia
         ixx="0.2216" ixy="0" ixz="0"
         iyy="0.2458" iyz="0"
@@ -234,13 +224,36 @@
     <child link="front_bumper_mount" />
   </joint>
 
+	<!-- ROS 2 control -->
+	<ros2_control name="dingo-d_hardware" type="system">
+		<hardware>
+			<plugin>gazebo_ros2_control/GazeboSystem</plugin>
+		</hardware>
+		<joint name="left_wheel">
+			<command_interface name="velocity">
+				<param name="min">-10</param>
+				<param name="max">10</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+		<joint name="right_wheel">
+			<command_interface name="velocity">
+				<param name="min">-10</param>
+				<param name="max">10</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+	</ros2_control>
+
   <!-- Bring in simulation data for Gazebo. -->
   <xacro:include filename="$(find dingo_description)/urdf/dingo.gazebo" />
+	<xacro:include filename="$(find dingo_description)/urdf/dingo-d.gazebo" />
 
   <!-- Optional standard accessories, including their simulation data. The rendering
        of these into the final description is controlled by optenv variables, which
        default each one to off.-->
-  <xacro:include filename="$(find dingo_description)/urdf/accessories.urdf.xacro" />
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv DINGO_URDF_EXTRAS empty.urdf)" />

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package format="2">
+<package format="3">
   <name>dingo_description</name>
   <version>0.1.8</version>
   <description>The dingo_description package</description>
@@ -10,15 +10,13 @@
 
   <author email="tbaltovski@clearpathrobotics.com">Tony Baltovski</author>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>robot_state_publisher</depend>
   <depend>urdf</depend>
   <depend>xacro</depend>
-  <exec_depend>lms1xx</exec_depend>
-  <exec_depend>realsense2_description</exec_depend>
-  <exec_depend>velodyne_description</exec_depend>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>

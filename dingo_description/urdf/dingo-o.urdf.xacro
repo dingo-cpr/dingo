@@ -87,14 +87,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://dingo_description/meshes/omni_chassis.dae"/>
+        <mesh filename="file://$(find dingo_description)/meshes/omni_chassis.dae"/>
       </geometry>
       <material name="dark_grey" />
     </visual>
     <collision>
       <origin xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://dingo_description/meshes/omni_chassis_collision.stl"/>
+        <mesh filename="file://$(find dingo_description)/meshes/omni_chassis_collision.stl"/>
       </geometry>
     </collision>
     <inertial>
