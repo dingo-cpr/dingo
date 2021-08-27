@@ -1,17 +1,23 @@
-cmake_minimum_required(VERSION 3.0.2)
+################################################################################
+# Set minimum required version of cmake, project name and compile options
+################################################################################
+cmake_minimum_required(VERSION 3.5)
 project(dingo_control)
 
-find_package(catkin REQUIRED)
+################################################################################
+# Find ament packages and libraries for ament and system dependencies
+################################################################################
+find_package(ament_cmake REQUIRED)
 
-catkin_package()
-
-
-install(DIRECTORY config launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+################################################################################
+# Install
+################################################################################
+install(
+  DIRECTORY config launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
-if(CATKIN_ENABLE_TESTING)
-  find_package(roslaunch REQUIRED)
-  roslaunch_add_file_check(launch/control.launch)
-  roslaunch_add_file_check(launch/teleop.launch)
-endif()
+################################################################################
+# Macro for ament package
+################################################################################
+ament_package()
