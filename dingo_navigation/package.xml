@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
-<package format="2">
+<package format="3">
   <name>dingo_navigation</name>
   <version>0.1.8</version>
   <description>Launch files and code for autonomous navigation of the Dingo</description>
   <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
   <license>BSD</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <exec_depend>amcl</exec_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <!-- <exec_depend>amcl</exec_depend>
   <exec_depend>gmapping</exec_depend>
   <exec_depend>map_server</exec_depend>
   <exec_depend>move_base</exec_depend>
-  <test_depend>roslaunch</test_depend>
+  <test_depend>roslaunch</test_depend> -->
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
