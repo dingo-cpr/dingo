@@ -27,6 +27,8 @@ def generate_launch_description():
 	# Launch configuration variables specific to simulation
 	use_sim_time = LaunchConfiguration('use_sim_time')
 	config = LaunchConfiguration('config')
+	physical_robot = LaunchConfiguration('physical_robot')
+
 
 	# Declare the launch arguments
 	declare_use_sim_time_cmd = DeclareLaunchArgument(
@@ -39,12 +41,17 @@ def generate_launch_description():
 		default_value=os.getenv('DINGO_CONFIG', 'base'),
 		description='get the dingo configuration')
 
+	declare_physical_robot_cmd = DeclareLaunchArgument(
+		'physical_robot',
+		default_value='true',
+		description='Whether or not you run it on the physical robot')
+
 	robot_description = Command([
 		os.path.join(this_share_directory, 'env_run'),
 		' ',
 		os.path.join(this_share_directory, 'urdf', 'configs', 'base'),
 		' ',
-		'xacro',' ', xacro_path
+		'xacro',' ', xacro_path, ' ', 'physical_robot:=', physical_robot
 	])
 
 	# Specify the actions
@@ -64,6 +71,7 @@ def generate_launch_description():
 	# Declare the launch options
 	ld.add_action(declare_use_sim_time_cmd)
 	ld.add_action(declare_config_cmd)
+	ld.add_action(declare_physical_robot_cmd)
 
 	# Add any conditioned actions
 	ld.add_action(start_robot_state_publisher_cmd)
