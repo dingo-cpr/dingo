@@ -38,7 +38,8 @@ dingo_velocity_controller:
 
     # Odometry fused with IMU is published by robot_localization, so
     # no need to publish a TF based on encoders alone.
-    enable_odom_tf: false
+    # CURRENTLY: no tf is published, so for now let's just take tf from just encoders
+    enable_odom_tf: true
 
     # Wheel separation and radius
     wheel_separation: 0.2160016
