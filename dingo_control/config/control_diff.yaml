@@ -9,20 +9,6 @@ controller_manager:
     dingo_velocity_controller:
       type: diff_drive_controller/DiffDriveController
 
-    simulation_velocity_controller:
-      type: velocity_controllers/JointGroupVelocityController
-
-simulation_velocity_controller:
-  ros__parameters:
-    joints:
-      - left_wheel
-      - right_wheel
-    command_interfaces:
-      - velocity
-    state_interfaces:
-      - position
-      - velocity
-
 dingo_velocity_controller:
   ros__parameters:
     left_wheel_names: ["left_wheel"]
