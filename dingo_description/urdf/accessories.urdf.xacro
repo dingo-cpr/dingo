@@ -3,16 +3,13 @@
   <!--
     As you add to this URDF, please be aware that both the robot and
     simulation include it. You must retain compatibility with all of
-    the following launch files:
+    the following launch files
 
     dingo_viz/launch/view_model.launch
     dingo_gazebo/launch/dingo_world.launch
     dingo_base/launch/base.launch
   -->
 
-  <xacro:include filename="$(find dingo_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
-  <xacro:include filename="$(find dingo_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
-  <xacro:include filename="$(find dingo_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
 
   <!--
     Add a lidar sensor.  By default this is a SICK LMS1xx but can be changed with the
@@ -24,6 +21,7 @@
     <xacro:property name="lidar_model" value="$(optenv DINGO_LASER_MODEL lms1xx)" />
 
     <xacro:if value="${lidar_model == 'lms1xx'}">
+  		<xacro:include filename="$(find dingo_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
       <xacro:sick_lms1xx_mount prefix="$(optenv DINGO_LASER_MOUNT front)"
                          topic="$(optenv DINGO_LASER_TOPIC front/scan)"/>
 
@@ -36,6 +34,7 @@
     </xacro:if>
 
     <xacro:if value="${lidar_model == 'ust10'}">
+  		<xacro:include filename="$(find dingo_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
       <xacro:hokuyo_ust10_mount prefix="$(optenv DINGO_LASER_MOUNT front)"
                           topic="$(optenv DINGO_LASER_TOPIC front/scan)" />
 
@@ -86,6 +85,7 @@
     <xacro:property name="lidar_3d_model" value="$(optenv DINGO_LASER_3D_MODEL vlp16)" />
 
     <xacro:if value="${lidar_3d_model == 'vlp16'}">
+  		<xacro:include filename="$(find dingo_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
       <xacro:vlp16_mount
           prefix="$(optenv DINGO_LASER_3D_MOUNT front)"
           parent_link="$(optenv DINGO_LASER_3D_MOUNT front)_mount"
