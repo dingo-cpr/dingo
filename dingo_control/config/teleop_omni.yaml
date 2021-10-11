@@ -73,6 +73,3 @@ teleop_twist_joy:
     yaw: 1.4 # TODO: should this be 1.0?
   enable_button: 4
   enable_turbo_button: 5
-joy_node:
-  deadzone: 0.1 # TODO: should this be 0.02?
-  autorepeat_rate: 20
