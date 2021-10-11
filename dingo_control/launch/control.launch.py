@@ -9,14 +9,15 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
+	dingo_control_directory = get_package_share_directory('dingo_control')
 	xacro_path = os.path.join(get_package_share_directory('dingo_description'), 'urdf', 'dingo.urdf.xacro')
 
 	if os.getenv('DINGO_OMNI', 0):
-		control_yaml = os.path.join(get_package_share_directory('dingo_control'), 'config', 'control_omni.yaml')
+		control_yaml = os.path.join(dingo_control_directory, 'config', 'control_omni.yaml')
 	else:
-		control_yaml = os.path.join(get_package_share_directory('dingo_control'), 'config', 'control_diff.yaml')
+		control_yaml = os.path.join(dingo_control_directory, 'config', 'control_diff.yaml')
 		
-	# $(env DINGO_OMNI 0)
+	twist_mux_yaml = os.path.join(dingo_control_directory, 'config', 'twist_mux.yaml')
 
 	physical_robot = LaunchConfiguration('physical_robot')
 
@@ -47,11 +48,20 @@ def generate_launch_description():
 		output="screen",
 	)
 
+	# Is this one even necessary? Don't think it is.
 	spawn_jsb_controller = Node(
 		package="controller_manager",
 		executable="spawner.py",
 		arguments=["dingo_joint_broadcaster"],
 		output="screen",
+	)
+
+	declare_twist_mux_node = Node(
+		package='twist_mux',
+		executable='twist_mux',
+		output='screen',
+		remappings={('/cmd_vel_out', '/dingo_velocity_controller/cmd_vel_unstamped')},
+		parameters=[twist_mux_yaml]
 	)
 		
 	ld = LaunchDescription()
@@ -61,5 +71,6 @@ def generate_launch_description():
 	ld.add_action(controller_manager_node)
 	ld.add_action(spawn_dd_controller)
 	ld.add_action(spawn_jsb_controller)
+	ld.add_action(declare_twist_mux_node)
 
 	return ld
