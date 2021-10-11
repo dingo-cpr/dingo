@@ -21,7 +21,7 @@ def generate_launch_description():
 	joystick = LaunchConfiguration('joystick')
 	joy_dev = LaunchConfiguration('joy_dev')
 
-	configured_dev = os.getenv('DINGO_JOY_DEV', '/dev/input/ps4')
+	configured_dev = os.getenv('DINGO_JOY_DEV', '/dev/input/js0')
 
 	# Declare the launch arguments
 	declare_joystick_cmd = DeclareLaunchArgument(
@@ -48,7 +48,7 @@ def generate_launch_description():
 		executable='teleop_node',
 		name='teleop_twist_joy_node',
 		parameters=[teleop_yaml],
-		remappings={('/cmd_vel', '/dingo_velocity_controller/cmd_vel_unstamped')}, # rename to bluetooth_teleop/cmd_vel is twist_mux works
+		remappings={('/cmd_vel', '/bluetooth_teleop/cmd_vel')}, # rename to bluetooth_teleop/cmd_vel is twist_mux works
 		output='screen',
 	)
 		
