@@ -1,0 +1,6 @@
+joy_node:
+  ros__parameters:
+    deadzone: 0.1 # TODO: should this be 0.02?
+    autorepeat_rate: 20.0
+    sticky_buttons: false
+    coalesce_interval_ms: 1
