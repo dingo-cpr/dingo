@@ -28,7 +28,7 @@ dingo_velocity_controller:
     enable_odom_tf: true
 
     # Wheel separation and radius
-    wheel_separation: 0.2160016
+    wheel_separation: 0.44
     wheel_radius: 0.049
 
     # Velocity and acceleration limits
