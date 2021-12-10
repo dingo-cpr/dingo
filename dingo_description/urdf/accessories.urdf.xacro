@@ -105,7 +105,7 @@
     - l515
   -->
   <xacro:if value="$(optenv DINGO_REALSENSE 0)">
-    <include filename="$(find dingo_description)/urdf/accessories/intel_realsense.urdf.xacro" />
+    <xacro:include filename="$(find dingo_description)/urdf/accessories/intel_realsense.urdf.xacro" />
     <xacro:realsense_sensor rs_model="$(optenv DINGO_REALSENSE_MODEL d435)"
                             prefix="$(optenv DINGO_REALSENSE_MOUNT front)"
                             topic="$(optenv DINGO_REALSENSE_TOPIC realsense)" />
