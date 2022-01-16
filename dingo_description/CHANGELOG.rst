@@ -2,8 +2,8 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.10 (2022-01-16)
+-------------------
 * Add missing "xacro:" infront of "include"
 * Contributors: Joey Yang
 

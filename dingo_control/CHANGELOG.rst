@@ -2,8 +2,8 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.10 (2022-01-16)
+-------------------
 * set predict_to_current_time
 * Contributors: Ebrahim Shahrivar
 
