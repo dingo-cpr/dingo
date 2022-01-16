@@ -2,6 +2,11 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* set predict_to_current_time
+* Contributors: Ebrahim Shahrivar
+
 0.1.9 (2021-07-16)
 ------------------
 * Change where we load the joy_dev argument so it loads correctly
