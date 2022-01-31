@@ -20,6 +20,7 @@ def generate_launch_description():
 	twist_mux_yaml = os.path.join(dingo_control_directory, 'config', 'twist_mux.yaml')
 
 	physical_robot = LaunchConfiguration('physical_robot')
+	use_sim_time = LaunchConfiguration('use_sim_time')
 
 	robot_description_parameter = {"robot_description": Command(['xacro',' ', xacro_path, ' ', 'physical_robot:=', physical_robot])}
 
@@ -28,11 +29,11 @@ def generate_launch_description():
 		'physical_robot',
 		default_value='true',
 		description='Physical robot if true, simulation if false')
-	
-	declare_control_yaml_cmd = DeclareLaunchArgument(
-		'control_yaml',
-		default_value=control_yaml,
-		description='Config file for ros2_control')
+
+	declare_use_sim_time_cmd = DeclareLaunchArgument(
+		'use_sim_time',
+		default_value='false',
+		description='Whether or not to use simulation time')
 
 	# Specify the actions
 	controller_manager_node = Node(
@@ -53,7 +54,6 @@ def generate_launch_description():
 		output="screen",
 	)
 
-	# Is this one even necessary? Don't think it is.
 	spawn_jsb_controller = Node(
 		package="controller_manager",
 		executable="spawner.py",
@@ -66,14 +66,14 @@ def generate_launch_description():
 		executable='twist_mux',
 		output='screen',
 		remappings={('/cmd_vel_out', '/dingo_velocity_controller/cmd_vel_unstamped')},
-		parameters=[twist_mux_yaml]
+		parameters=[twist_mux_yaml, {'use_sim_time' : use_sim_time}]
 	)
 		
 	ld = LaunchDescription()
 
 	# Add any conditioned actions
 	ld.add_action(declare_physical_robot_cmd)
-	ld.add_action(declare_control_yaml_cmd)
+	ld.add_action(declare_use_sim_time_cmd)
 	ld.add_action(controller_manager_node)
 	ld.add_action(spawn_dd_controller)
 	ld.add_action(spawn_jsb_controller)

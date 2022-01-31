@@ -2,9 +2,8 @@
 <robot>
   <gazebo>
     <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
-      <parameters>$(find dingo_control)/config/control_diff.yaml</parameters>
+      <parameters>$(arg control_yaml_file)</parameters>
       <robotNamespace>/</robotNamespace>
     </plugin>
   </gazebo>
-
 </robot>

@@ -22,12 +22,14 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 	this_share_directory = get_package_share_directory('dingo_description')
+	dingo_control_directory = get_package_share_directory('dingo_control')
 	xacro_path = os.path.join(this_share_directory, 'urdf', 'dingo.urdf.xacro')
 
 	# Launch configuration variables specific to simulation
 	use_sim_time = LaunchConfiguration('use_sim_time')
 	config = LaunchConfiguration('config')
 	physical_robot = LaunchConfiguration('physical_robot')
+	control_yaml_file = LaunchConfiguration('control_yaml_file')
 
 
 	# Declare the launch arguments
@@ -46,12 +48,17 @@ def generate_launch_description():
 		default_value='true',
 		description='Whether or not you run it on the physical robot')
 
+	declare_physical_robot_cmd = DeclareLaunchArgument(
+		'control_yaml_file',
+		default_value=dingo_control_directory+'/config/control_diff.yaml',
+		description='The config file for gazebo_ros2_control, only needed in simulation')
+
 	robot_description = Command([
 		os.path.join(this_share_directory, 'env_run'),
 		' ',
 		os.path.join(this_share_directory, 'urdf', 'configs', 'base'),
 		' ',
-		'xacro',' ', xacro_path, ' ', 'physical_robot:=', physical_robot
+		'xacro',' ', xacro_path, ' ', 'physical_robot:=', physical_robot, ' ', 'control_yaml_file:=', control_yaml_file
 	])
 
 	# Specify the actions
