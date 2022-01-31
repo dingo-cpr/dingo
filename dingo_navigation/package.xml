@@ -12,7 +12,8 @@
   <exec_depend>map_server</exec_depend>
   <exec_depend>move_base</exec_depend>
   <test_depend>roslaunch</test_depend> -->
-
+  <exec_depend>cartographer_ros</exec_depend>
+  <exec_depend>navigation2</exec_depend>
   <export>
     <build_type>ament_cmake</build_type>
   </export>

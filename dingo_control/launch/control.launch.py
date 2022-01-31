@@ -28,6 +28,11 @@ def generate_launch_description():
 		'physical_robot',
 		default_value='true',
 		description='Physical robot if true, simulation if false')
+	
+	declare_control_yaml_cmd = DeclareLaunchArgument(
+		'control_yaml',
+		default_value=control_yaml,
+		description='Config file for ros2_control')
 
 	# Specify the actions
 	controller_manager_node = Node(
@@ -68,6 +73,7 @@ def generate_launch_description():
 
 	# Add any conditioned actions
 	ld.add_action(declare_physical_robot_cmd)
+	ld.add_action(declare_control_yaml_cmd)
 	ld.add_action(controller_manager_node)
 	ld.add_action(spawn_dd_controller)
 	ld.add_action(spawn_jsb_controller)
