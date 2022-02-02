@@ -24,22 +24,18 @@ from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import ThisLaunchFileDir
 
-
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     dingo_cartographer_prefix = get_package_share_directory('dingo_navigation')
     cartographer_config_dir = LaunchConfiguration('cartographer_config_dir', default=os.path.join(
-                                                  dingo_cartographer_prefix, 'config'))
+                                                  dingo_cartographer_prefix, 'params'))
     configuration_basename = LaunchConfiguration('configuration_basename',
                                                  default='dingo_lds_3d.lua')
 
     resolution = LaunchConfiguration('resolution', default='0.05')
     publish_period_sec = LaunchConfiguration('publish_period_sec', default='1.0')
 
-    rviz_config_dir = os.path.join(get_package_share_directory('dingo_navigation'),
-                                   'rviz', 'dingo_cartographer.rviz')
-
-    remappings = [('/points2', '/velodyne_points')]
+    remappings = [('/points2', '/velodyne/front/points')]
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -79,13 +75,5 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([ThisLaunchFileDir(), '/occupancy_grid.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time, 'resolution': resolution,
                               'publish_period_sec': publish_period_sec}.items(),
-        ),
-
-        Node(
-            package='rviz2',
-            executable='rviz2',
-            name='rviz2',
-            arguments=['-d', rviz_config_dir],
-            parameters=[{'use_sim_time': use_sim_time}],
-            output='screen'),
+        )
     ])
