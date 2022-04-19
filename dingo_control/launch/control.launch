@@ -21,6 +21,6 @@
     <remap from="cmd_vel_out" to="dingo_velocity_controller/cmd_vel"/>
   </node>
 
-  <rosparam command="load" file="$(arg config_extras)" />
+  <rosparam command="load" file="$(arg config_extras)" subst_value="true" />
 
 </launch>
