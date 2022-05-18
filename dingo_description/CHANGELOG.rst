@@ -2,8 +2,8 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.11 (2022-05-17)
+-------------------
 * Added Velodyne HDL32E and Microstrain GX5
 * Updated URDF to disable mount
 * Update VLP16 with disable tower and set angle on mount
