@@ -2,6 +2,12 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Enable subst_value in dingo_config_extras
+  This should get cherry-picked into Noetic too.
+* Contributors: Chris I-B
+
 0.1.10 (2022-01-16)
 -------------------
 * set predict_to_current_time

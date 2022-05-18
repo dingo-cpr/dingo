@@ -2,6 +2,14 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added Velodyne HDL32E and Microstrain GX5
+* Updated URDF to disable mount
+* Update VLP16 with disable tower and set angle on mount
+* Add Velodyne HDL32e URDF and meshes
+* Contributors: Luis Camero
+
 0.1.10 (2022-01-16)
 -------------------
 * Add missing "xacro:" infront of "include"
