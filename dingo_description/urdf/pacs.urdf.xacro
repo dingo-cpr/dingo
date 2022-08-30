@@ -290,7 +290,7 @@
   <xacro:macro name="pacs">
     <xacro:property name="omni" value="$(optenv DINGO_OMNI 0)"/>
     <xacro:property name="riser" value="$(optenv DINGO_PACS_RISER 0)"/>
-    <xacro:property name="pacs_enabled" value="$(optenv DINGO_PACS 1)" />
+    <xacro:property name="pacs_enabled" value="$(optenv DINGO_PACS_ENABLED 1)" />
 
     <xacro:if value="${pacs_enabled}">
       <xacro:property name="riser_x" value="0.0"/>
