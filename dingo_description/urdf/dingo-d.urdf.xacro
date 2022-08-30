@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <robot name="dingo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="pacs_enabled" value="$(optenv DINGO_PACS 0)"/>
+
   <xacro:property name="PI" value="3.1415926535897931" />
 
   <xacro:property name="wheel_radius" value="0.049" />
@@ -184,43 +186,45 @@
       - rear b
       - rear
   -->
-  <link name="front_mount"/>
-  <link name="front_b_mount"/>
-  <link name="front_c_mount"/>
-  <link name="rear_mount"/>
-  <link name="rear_b_mount"/>
-  <link name="rear_c_mount"/>
+  <xacro:unless value="${pacs_enabled}">
+    <link name="front_mount"/>
+    <link name="front_b_mount"/>
+    <link name="front_c_mount"/>
+    <link name="rear_mount"/>
+    <link name="rear_b_mount"/>
+    <link name="rear_c_mount"/>
 
-  <joint name="front_c_mount_joint" type="fixed">
-    <origin xyz="0.040 0 0.064263" rpy="0 0 0" />
-    <parent link="chassis_link"/>
-    <child link="front_c_mount" />
-  </joint>
-  <joint name="front_b_mount_joint" type="fixed">
-    <origin xyz="0.080 0 0" rpy="0 0 0" />
-    <parent link="front_c_mount"/>
-    <child link="front_b_mount" />
-  </joint>
-  <joint name="front_mount_joint" type="fixed">
-    <origin xyz="0.080 0 0" rpy="0 0 0" />
-    <parent link="front_b_mount"/>
-    <child link="front_mount" />
-  </joint>
-  <joint name="rear_c_mount_joint" type="fixed">
-    <origin xyz="-0.040 0 0.064263" rpy="0 0 0" />
-    <parent link="chassis_link"/>
-    <child link="rear_c_mount" />
-  </joint>
-  <joint name="rear_b_mount_joint" type="fixed">
-    <origin xyz="-0.080 0 0" rpy="0 0 0" />
-    <parent link="rear_c_mount"/>
-    <child link="rear_b_mount" />
-  </joint>
-  <joint name="rear_moint_joint" type="fixed">
-    <origin xyz="-0.080 0 0" rpy="0 0 0" />
-    <parent link="rear_b_mount"/>
-    <child link="rear_mount" />
-  </joint>
+    <joint name="front_c_mount_joint" type="fixed">
+      <origin xyz="0.040 0 0.064263" rpy="0 0 0" />
+      <parent link="chassis_link"/>
+      <child link="front_c_mount" />
+    </joint>
+    <joint name="front_b_mount_joint" type="fixed">
+      <origin xyz="0.080 0 0" rpy="0 0 0" />
+      <parent link="front_c_mount"/>
+      <child link="front_b_mount" />
+    </joint>
+    <joint name="front_mount_joint" type="fixed">
+      <origin xyz="0.080 0 0" rpy="0 0 0" />
+      <parent link="front_b_mount"/>
+      <child link="front_mount" />
+    </joint>
+    <joint name="rear_c_mount_joint" type="fixed">
+      <origin xyz="-0.040 0 0.064263" rpy="0 0 0" />
+      <parent link="chassis_link"/>
+      <child link="rear_c_mount" />
+    </joint>
+    <joint name="rear_b_mount_joint" type="fixed">
+      <origin xyz="-0.080 0 0" rpy="0 0 0" />
+      <parent link="rear_c_mount"/>
+      <child link="rear_b_mount" />
+    </joint>
+    <joint name="rear_moint_joint" type="fixed">
+      <origin xyz="-0.080 0 0" rpy="0 0 0" />
+      <parent link="rear_b_mount"/>
+      <child link="rear_mount" />
+    </joint>
+  </xacro:unless>
 
   <!--
     Mounting point for accessories on the front bumper.
@@ -233,6 +237,10 @@
     <parent link="chassis_link"/>
     <child link="front_bumper_mount" />
   </joint>
+
+  <!-- PACS -->
+  <xacro:include filename="$(find dingo_description)/urdf/pacs.urdf.xacro"/>
+  <xacro:pacs/>
 
   <!-- Bring in simulation data for Gazebo. -->
   <xacro:include filename="$(find dingo_description)/urdf/dingo.gazebo" />
