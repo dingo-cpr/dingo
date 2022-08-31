@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<robot name="dingo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- 
+    Standard Mount: adds link (w/o geometry) at given position
+      - assumes orientation of parent 
+  -->
+  <xacro:macro name="mount" params="name parent x:=0 y:=0 z:=0">
+    <!-- Add Empty Mount -->
+    <link name="${name}"/>
+    <joint name="${name}_joint" type="fixed">
+      <child link="${name}"/>
+      <parent link="${parent}"/>
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+    </joint>
+    <!-- Add Bracket -->
+    <xacro:bracket name="${name}"/>
+  </xacro:macro>
+
+    <!-- 
+    Base Row Mounts: adds standard mounts for row at base level (0) w.r.t base_link
+  -->
+  <xacro:macro name="row_mounts" params="level row parent">
+    <xacro:property name="x" value="${0.080 * (6 - row) - 0.200}"/>
+    <xacro:property name="z" value="0.00635"/>
+    <xacro:mount name="A${level}${row}" parent="${parent}" x="${x}" y="0.16" z="${z}"/>
+    <xacro:mount name="B${level}${row}" parent="${parent}" x="${x}" y="0.08" z="${z}"/>
+    <xacro:mount name="C${level}${row}" parent="${parent}" x="${x}" y="0.00" z="${z}"/>
+    <xacro:mount name="D${level}${row}" parent="${parent}" x="${x}" y="-0.08" z="${z}"/>
+    <xacro:mount name="E${level}${row}" parent="${parent}" x="${x}" y="-0.16" z="${z}"/>
+  </xacro:macro>
+
+  <!-- 
+    Plate Mounts: adds standard mounts for the entire base level (0) w.r.t. base_link 
+  -->
+  <xacro:macro name="mounts" params="parent level">
+    <xacro:row_mounts row="1" level="${level}" parent="${parent}"/>
+    <xacro:row_mounts row="2" level="${level}" parent="${parent}"/>
+    <xacro:row_mounts row="3" level="${level}" parent="${parent}"/>
+    <xacro:row_mounts row="4" level="${level}" parent="${parent}"/>
+    <xacro:row_mounts row="5" level="${level}" parent="${parent}"/>
+    <xacro:row_mounts row="6" level="${level}" parent="${parent}"/>
+  </xacro:macro>
+
+  <!--
+    Base Mounts:
+  -->
+  <xacro:macro name="base_mounts" params="parent omni">
+    <xacro:if value="${omni}">
+      <xacro:mount name="C01" parent="${parent}" x="0.24" y="0.0" z="0.069023"/>
+      <xacro:mount name="C02" parent="${parent}" x="0.16" y="0.0" z="0.069023"/>
+      <xacro:mount name="C03" parent="${parent}" x="0.08" y="0.0" z="0.069023"/>
+      <xacro:mount name="C04" parent="${parent}" x="0.00" y="0.0" z="0.069023"/>
+      <xacro:mount name="C05" parent="${parent}" x="-0.08" y="0.0" z="0.069023"/>
+      <xacro:mount name="C06" parent="${parent}" x="-0.16" y="0.0" z="0.069023"/>
+      <xacro:mount name="C07" parent="${parent}" x="-0.24" y="0.0" z="0.069023"/>
+    </xacro:if>
+    <xacro:unless value="${omni}">
+      <xacro:mount name="C01" parent="${parent}" x="0.20" y="0.0" z="0.064263"/>
+      <xacro:mount name="C02" parent="${parent}" x="0.12" y="0.0" z="0.064263"/>
+      <xacro:mount name="C03" parent="${parent}" x="0.04" y="0.0" z="0.064263"/>
+      <xacro:mount name="C04" parent="${parent}" x="-0.04" y="0.0" z="0.064263"/>
+      <xacro:mount name="C05" parent="${parent}" x="-0.12" y="0.0" z="0.064263"/>
+      <xacro:mount name="C06" parent="${parent}" x="-0.20" y="0.0" z="0.064263"/>
+    </xacro:unless>
+  </xacro:macro>
+
+  <!-- 
+    Post Quad: adds four posts in a rectangular configuration
+  -->
+    <xacro:macro name="quad_post" params="parent prefix length width height radius:=0.006 *origin">
+    <link name="${prefix}">
+      <!-- Top Left -->
+      <visual>
+        <material name="light_grey"/>
+        <origin xyz="${length/2} ${width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <material name="light_grey"/>
+        <origin xyz="${length/2} ${width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </collision>
+
+      <!-- Top Right -->
+      <visual>
+        <material name="light_grey"/>
+        <origin xyz="${length/2} ${-width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <material name="light_grey"/>
+        <origin xyz="${length/2} ${-width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </collision>
+
+      <!-- Bottom Left -->
+      <visual>
+        <material name="light_grey"/>
+        <origin xyz="${-length/2} ${width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <material name="light_grey"/>
+        <origin xyz="${-length/2} ${width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </collision>
+
+      <!-- Bottom Right -->
+      <visual>
+        <material name="light_grey"/>
+        <origin xyz="${-length/2} ${-width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <material name="light_grey"/>
+        <origin xyz="${-length/2} ${-width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_joint" type="fixed">
+      <child link="${prefix}"/>
+      <parent link="${parent}"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+  </xacro:macro>
+
+  <!--
+    Riser: adds riser with posts
+  -->
+  <xacro:macro name="riser" params="height parent *origin">
+    <!-- Quad Posts -->
+    <xacro:quad_post parent="chassis_link" prefix="riser_base_link" length="0.16" width="0.08" height="${height-0.00635}">
+      <xacro:insert_block name="origin"/>
+    </xacro:quad_post>
+    <!-- Riser -->
+    <link name="riser" type="fixed">
+      <visual>
+        <material name="dark_grey"/>
+        <geometry>
+          <mesh filename="package://dingo_description/meshes/riser.stl"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.00635"/>
+        <material name="dark_grey"/>
+        <geometry>
+          <box size="0.510 0.430 0.00635"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="riser_joint" type="fixed">
+      <child link="riser"/>
+      <parent link="riser_base_link"/>
+      <origin xyz="0 0 ${height - 0.00635}"/>
+    </joint>
+    <!-- Mounts -->
+    <xacro:mounts parent="riser" level="1"/>
+  </xacro:macro>
+
+  <!--
+    Bracket Extension: adds extension posts for brackets
+  -->
+  <xacro:macro name="bracket_extension" params="name height xyz rpy">
+    <!-- Extension Standoffs -->
+    <xacro:quad_post parent="${name}" prefix="${name}_extension" length="0.08" width="0.08" height="${height}" radius="0.004">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+    </xacro:quad_post>
+  </xacro:macro>
+
+  <!--
+    Bracket Generic: adds generic bracket
+  -->
+  <xacro:macro name="bracket_generic" params="name mesh x y z *origin">
+    <link name="${name}_mount">
+      <visual>
+        <material name="dark_grey"/>
+        <geometry>
+          <mesh filename="${mesh}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${-z/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${x} ${y} ${z}"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${name}_mount_joint" type="fixed">
+      <child link="${name}_mount"/>
+      <parent link="${name}"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+  </xacro:macro>
+
+  <!--
+    Brackets: add user defined bracket per mount name (i.e. A01)
+      - adds extension to increase height of bracket (DINGO_A01_BRACKET_EXTENSION 0). (e.g. 20, 40, 60, 80)
+      - adds type of bracket (DINGO_A01_BRACKET_TYPE horizontal). (e.g. horizontal, horizontal_large, vertical)
+      - adds mounting location always as A01_mount
+  -->
+  <xacro:macro name="bracket" params="name">
+    <!-- Check to Add Bracket -->
+    <xacro:property name="bracket_enabled"        value="$(optenv DINGO_${name}_BRACKET_ENABLED 0)"/>
+    <xacro:property name="bracket_type"           value="$(optenv DINGO_${name}_BRACKET_TYPE horizontal)"/>
+    <xacro:property name="bracket_xyz"            value="$(optenv DINGO_${name}_BRACKET_XYZ 0 0 0)"/>
+    <xacro:property name="bracket_rpy"            value="$(optenv DINGO_${name}_BRACKET_RPY 0 0 0)"/>
+    <xacro:property name="bracket_extension"      value="$(optenv DINGO_${name}_BRACKET_EXTENSION 0)"/>
+    <xacro:property name="bracket_parent"         value="${name}"/>
+    <xacro:property name="bracket_extension_xyz"  value="${bracket_xyz}"/>
+    <xacro:property name="bracket_extension_rpy"  value="${bracket_rpy}"/>
+    <xacro:if value="${bracket_enabled}">
+      <!-- Horizontal -->
+      <xacro:if value="${bracket_type == 'horizontal'}">
+        <xacro:property name="mesh_x" value="0.09"/>
+        <xacro:property name="mesh_y" value="0.09"/>
+        <xacro:property name="mesh_z" value="0.010125"/>
+        <xacro:property name="mesh_thickness" value="0.010125"/>
+        <xacro:property name="mesh" value="package://dingo_description/meshes/bracket_horizontal.stl"/>
+      </xacro:if>
+      <!-- Horizontal Large -->
+      <xacro:if value="${bracket_type == 'horizontal_large'}">
+        <xacro:property name="mesh_x" value="0.16"/>
+        <xacro:property name="mesh_y" value="0.16"/>
+        <xacro:property name="mesh_z" value="0.00635"/>
+        <xacro:property name="mesh_thickness" value="0.00635"/>
+        <xacro:property name="mesh" value="package://dingo_description/meshes/bracket_horizontal_large.stl"/>
+      </xacro:if>
+      <!-- Vertical -->
+      <xacro:if value="${bracket_type == 'vertical'}">
+        <xacro:property name="mesh_x" value="0.1"/>
+        <xacro:property name="mesh_y" value="0.1"/>
+        <xacro:property name="mesh_z" value="0.1419"/>
+        <xacro:property name="mesh_thickness" value="0.010125"/>
+        <xacro:property name="mesh" value="package://dingo_description/meshes/bracket_vertical.stl"/>
+        <!-- Vertical Mount -->
+        <link name="${name}_vertical_mount"/>
+        <joint name="${name}_vertical_mount_joint" type="fixed">
+          <child link="${name}_vertical_mount"/>
+          <parent link="${name}_mount"/>
+          <origin xyz="0.0518 0 0.086875" rpy="0 -${pi/2} 0"/>
+        </joint>
+      </xacro:if>
+      <xacro:unless value="${bracket_type == 'vertical' or
+                              bracket_type == 'horizontal' or
+                              bracket_type == 'horizontal_large'}">
+        ${xacro.error(str("Bracket type (" + str(bracket_enabled) + ") does not exist. Select between 'vertical', 'horizontal', or 'horizontal_large'"))}
+      </xacro:unless>
+      <!-- Extension -->
+      <xacro:if value="${bracket_extension > 0}">
+        <xacro:bracket_extension name="${name}" height="${bracket_extension/1000 - mesh_thickness}" xyz="${bracket_extension_xyz}" rpy="${bracket_extension_rpy}"/>
+        <!-- Update bracket position values -->
+        <xacro:property name="bracket_xyz"      value="${bracket_xyz.split(' ')[0]} ${bracket_xyz.split(' ')[1]} ${float(bracket_xyz.split(' ')[2]) + float(bracket_extension/1000)}" lazy_eval="false"/>
+        <xacro:property name="bracket_rpy"      value="0 0 0"/>
+        <xacro:property name="bracket_parent"   value="${name}_extension" lazy_eval="false"/>
+      </xacro:if>
+      <xacro:if value="${bracket_extension == 0}">
+        <xacro:property name="bracket_x" value="${bracket_xyz.split(' ')[0]}" lazy_eval="false"/>
+        <xacro:property name="bracket_y" value="${bracket_xyz.split(' ')[1]}" lazy_eval="false"/>
+        <xacro:property name="bracket_z" value="${float(bracket_xyz.split(' ')[2]) + float(mesh_thickness)}" lazy_eval="false"/>
+        <xacro:property name="bracket_xyz" value="${bracket_x} ${bracket_y} ${bracket_z}" lazy_eval="false"/>
+      </xacro:if>
+      <xacro:unless value="${bracket_extension >= 0}">
+        ${xacro.error(str("Bracket extension (" + str(bracket_extension) + ") can only be 0 mm to 80 mm."))}
+      </xacro:unless>
+
+      <!-- Add the Bracket-->
+      <xacro:bracket_generic name="${name}" mesh="${mesh}" x="${mesh_x}" y="${mesh_y}" z="${mesh_z}">
+        <origin xyz="${bracket_xyz}" rpy="${bracket_rpy}"/>
+      </xacro:bracket_generic>
+    </xacro:if>
+  </xacro:macro>
+
+  <!-- Entire PACS System -->
+  <xacro:macro name="pacs">
+    <xacro:property name="omni" value="$(optenv DINGO_OMNI 0)"/>
+    <xacro:property name="riser" value="$(optenv DINGO_PACS_RISER 0)"/>
+    <xacro:property name="pacs_enabled" value="$(optenv DINGO_PACS_ENABLED 1)" />
+
+    <xacro:if value="${pacs_enabled}">
+      <xacro:property name="riser_x" value="0.0"/>
+      <xacro:if value="${omni}">
+        <xacro:property name="riser_x" value="0.040"/>
+      </xacro:if>
+      <xacro:if value="${riser}">
+        <xacro:riser height="0.100" parent="base_link">
+          <origin xyz="${riser_x} 0 0.069"/>
+        </xacro:riser>
+      </xacro:if>
+    </xacro:if>
+
+    <xacro:base_mounts parent="chassis_link" omni="${omni}"/>
+  </xacro:macro>
+</robot>
