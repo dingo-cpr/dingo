@@ -216,14 +216,16 @@
   -->
   <xacro:macro name="bracket" params="name">
     <!-- Check to Add Bracket -->
-    <xacro:property name="bracket_enabled"        value="$(optenv DINGO_${name}_BRACKET_ENABLED 0)"/>
-    <xacro:property name="bracket_type"           value="$(optenv DINGO_${name}_BRACKET_TYPE horizontal)"/>
-    <xacro:property name="bracket_xyz"            value="$(optenv DINGO_${name}_BRACKET_XYZ 0 0 0)"/>
-    <xacro:property name="bracket_rpy"            value="$(optenv DINGO_${name}_BRACKET_RPY 0 0 0)"/>
-    <xacro:property name="bracket_extension"      value="$(optenv DINGO_${name}_BRACKET_EXTENSION 0)"/>
+    <xacro:property name="name_upper"             value="${name.upper()}"/>
+    <xacro:property name="bracket_enabled"        value="$(optenv DINGO_${name_upper}_BRACKET_ENABLED 0)"/>
+    <xacro:property name="bracket_type"           value="$(optenv DINGO_${name_upper}_BRACKET_TYPE horizontal)"/>
+    <xacro:property name="bracket_xyz"            value="$(optenv DINGO_${name_upper}_BRACKET_XYZ 0 0 0)"/>
+    <xacro:property name="bracket_rpy"            value="$(optenv DINGO_${name_upper}_BRACKET_RPY 0 0 0)"/>
+    <xacro:property name="bracket_extension"      value="$(optenv DINGO_${name_upper}_BRACKET_EXTENSION 0)"/>
     <xacro:property name="bracket_parent"         value="${name}"/>
     <xacro:property name="bracket_extension_xyz"  value="${bracket_xyz}"/>
     <xacro:property name="bracket_extension_rpy"  value="${bracket_rpy}"/>
+
     <xacro:if value="${bracket_enabled}">
       <!-- Horizontal -->
       <xacro:if value="${bracket_type == 'horizontal'}">
