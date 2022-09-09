@@ -4,14 +4,38 @@
   file is a wrapper or the realsense2_description macro that also uses the kinect
   gazebo plugin to simulate data from the camera
 -->
+
+<!-- IMPORTANT NOTE:
+  As of Sept. 2022, due to limitations with the 'realsense2_description' package (see
+  realsense2_description/urdf/_materials.xacro.urdf), the following files must be
+  included in the parent xacro file that will include this one:
+  '''
+  <xacro:if value="${rs_model == 'd435'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${rs_model == 'd435i'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${rs_model == 'd415'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${rs_model == 'd455'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+  </xacro:if>
+  '''
+  Multiple inclusions of any of these files (even when namespaced), will define
+  the materials at a global level, violating uniqueness property of xacro materials.
+ -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="realsense_sensor" params="
                rs_model:=d435
                prefix:=front
+               parent:=front_mount
                topic:=realsense
                width:=680
                height:=480
-               update_rate:=30">
+               update_rate:=30
+               *origin">
 
     <xacro:macro name="realsense_gazebo" params="
               prefix=front              model=d4
@@ -85,10 +109,9 @@
     </xacro:macro>
 
     <xacro:if value="${rs_model == 'd435'}">
-      <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
-      <xacro:sensor_d435 parent="${prefix}_mount"
+      <xacro:sensor_d435 parent="${parent}"
                         name="${prefix}_realsense">
-        <origin xyz="$(optenv DINGO_REALSENSE_OFFSET 0 0 0)" rpy="$(optenv DINGO_REALSENSE_RPY 0 0 0)" />
+        <xacro:insert_block name="origin"/>
       </xacro:sensor_d435>
 
       <xacro:realsense_gazebo
@@ -105,16 +128,15 @@
     </xacro:if>
 
     <xacro:if value="${rs_model == 'd435i'}">
-      <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
-      <xacro:sensor_d435i parent="$(optenv DINGO_REALSENSE_MOUNT front)_mount"
-                          name="$(optenv DINGO_REALSENSE_MOUNT front)_realsense">
-        <origin xyz="$(optenv DINGO_REALSENSE_OFFSET 0 0 0)" rpy="$(optenv DINGO_REALSENSE_RPY 0 0 0)" />
+      <xacro:sensor_d435i parent="${parent}"
+                          name="${prefix}_realsense">
+        <xacro:insert_block name="origin"/>
       </xacro:sensor_d435i>
 
       <xacro:realsense_gazebo
-         prefix="$(optenv DINGO_REALSENSE_MOUNT front)"
-         frame="$(optenv DINGO_REALSENSE_MOUNT front)_realsense_link"
-         topic="$(optenv DINGO_REALSENSE_TOPIC realsense)"
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
          h_fov="1.5184351666666667"
          v_fov="1.0122901111111111"
          min_range="0.105"
@@ -132,8 +154,8 @@
         <plugin name="d435_accel" filename="libhector_gazebo_ros_imu.so">
           <robotNamespace>/</robotNamespace>
           <updateRate>30.0</updateRate>
-          <bodyName>$(optenv DINGO_REALSENSE_MOUNT front)_realsense_link</bodyName>
-          <topicName>$(optenv DINGO_REALSENSE_TOPIC realsense)/accel/sample</topicName>
+          <bodyName>${prefix}_realsense_link</bodyName>
+          <topicName>${topic}/accel/sample</topicName>
           <accelDrift>0.005 0.005 0.005</accelDrift>
           <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
           <rateDrift>0.005 0.005 0.005 </rateDrift>
@@ -144,8 +166,8 @@
         <plugin name="d435_gyro" filename="libhector_gazebo_ros_imu.so">
           <robotNamespace>/</robotNamespace>
           <updateRate>30.0</updateRate>
-          <bodyName>$(optenv DINGO_REALSENSE_MOUNT front)_realsense_link</bodyName>
-          <topicName>$(optenv DINGO_REALSENSE_TOPIC realsense)/gyro/sample</topicName>
+          <bodyName>${prefix}_realsense_link</bodyName>
+          <topicName>${topic}/gyro/sample</topicName>
           <accelDrift>0.005 0.005 0.005</accelDrift>
           <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
           <rateDrift>0.005 0.005 0.005 </rateDrift>
@@ -157,16 +179,15 @@
     </xacro:if>
 
     <xacro:if value="${rs_model == 'd415'}">
-      <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
-      <xacro:sensor_d415 parent="$(optenv DINGO_REALSENSE_MOUNT front)_mount"
-                         name="$(optenv DINGO_REALSENSE_MOUNT front)_realsense">
-        <origin xyz="$(optenv DINGO_REALSENSE_OFFSET 0 0 0)" rpy="$(optenv DINGO_REALSENSE_RPY 0 0 0)" />
+      <xacro:sensor_d415 parent="${parent}"
+                         name="${prefix}_realsense">
+        <xacro:insert_block name="origin"/>
       </xacro:sensor_d415>
 
       <xacro:realsense_gazebo
-         prefix="$(optenv DINGO_REALSENSE_MOUNT front)"
-         frame="$(optenv DINGO_REALSENSE_MOUNT front)_realsense_link"
-         topic="$(optenv DINGO_REALSENSE_TOPIC realsense)"
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
          h_fov="1.1344640137963142"
          v_fov="0.6981317007977318"
          min_range="0.3"
@@ -178,16 +199,15 @@
 
     <xacro:if value="${rs_model == 'd455'}">
       <!-- TODO: not officially supported yet. Use the D435 mesh for now, even though it's the wrong size -->
-      <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
-      <xacro:sensor_d435 parent="$(optenv DINGO_REALSENSE_MOUNT front)_mount"
-                         name="$(optenv DINGO_REALSENSE_MOUNT front)_realsense">
-        <origin xyz="$(optenv DINGO_REALSENSE_OFFSET 0 0 0)" rpy="$(optenv DINGO_REALSENSE_RPY 0 0 0)" />
+      <xacro:sensor_d435 parent="${parent}"
+                         name="${prefix}_realsense">
+        <xacro:insert_block name="origin"/>
       </xacro:sensor_d435>
 
       <xacro:realsense_gazebo
-         prefix="$(optenv DINGO_REALSENSE_MOUNT front)"
-         frame="$(optenv DINGO_REALSENSE_MOUNT front)_realsense_link"
-         topic="$(optenv DINGO_REALSENSE_TOPIC realsense)"
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
          h_fov="1.5009831567151233"
          v_fov="0.9948376736367678"
          min_range="0.5"
@@ -235,15 +255,15 @@
         <origin xyz="0 0 0.0305" rpy="0 0 0" />
       </joint>
       <joint type="fixed" name="${prefix}_realsense_mount_joint">
-        <parent link="${prefix}_mount" />
+        <parent link="${parent}" />
         <child link="${prefix}_realsense_bottom_screw_frame" />
         <origin xyz="0 0 0.004" rpy="0 0 0" />
       </joint>
 
       <xacro:realsense_gazebo
-         prefix="$(optenv DINGO_REALSENSE_MOUNT front)"
-         frame="$(optenv DINGO_REALSENSE_MOUNT front)_realsense_link"
-         topic="$(optenv DINGO_REALSENSE_TOPIC realsense)"
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
          h_fov="1.2217304763960306"
          v_fov="0.9599310885968813"
          min_range="0.25"
