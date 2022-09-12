@@ -85,7 +85,7 @@
       <geometry>
         <sphere radius="0.01"/>
       </geometry>
-      <material name="Black"/>
+      <material name="black"/>
     </visual>
     <collision>
       <geometry>

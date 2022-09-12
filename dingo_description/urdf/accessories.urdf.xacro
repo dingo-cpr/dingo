@@ -128,23 +128,51 @@
     - vlp16 (default) :: Velodyne VLP16=
   -->
   <xacro:if value="$(optenv DINGO_LASER_3D 0)">
-    <xacro:property name="mount" value="$(optenv DINGO_LASER_3D_MOUNT front)" />
-    <xacro:property name="topic" value="$(optenv DINGO_LASER_3D_TOPIC front/points)" />
-    <xacro:property name="tower" value="$(optenv DINGO_LASER_3D_TOWER 1)" />
-    <xacro:property name="angle" value="$(optenv DINGO_LASER_3D_ANGLE 0)" />
+    <xacro:property name="mount"  value="$(optenv DINGO_LASER_3D_MOUNT front)" />
+    <xacro:property name="topic"  value="$(optenv DINGO_LASER_3D_TOPIC front/points)" />
+    <xacro:property name="tower"  value="$(optenv DINGO_LASER_3D_TOWER 1)" />
+    <xacro:property name="angle"  value="$(optenv DINGO_LASER_3D_ANGLE 0)" />
     <xacro:property name="prefix" value="$(optenv DINGO_LASER_3D_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv DINGO_LASER_3D_PARENT ${mount}_mount)" />
-    <xacro:property name="lidar_3d_model" value="$(optenv DINGO_LASER_3D_MODEL vlp16)" />
+    <xacro:property name="model"  value="$(optenv DINGO_LASER_3D_MODEL vlp16)" />
+    <xacro:property name="frame"  value="$(optenv DINGO_LASER_3D_FRAME velodyne)" />
+    <xacro:property name="xyz"    value="$(optenv DINGO_LASER_3D_OFFSET 0 0 0)" />
+    <xacro:property name="rpy"    value="$(optenv DINGO_LASER_3D_RPY 0 0 0)" />
     <!-- Velodyne VLP16 -->
-    <xacro:if value="${lidar_3d_model == 'vlp16'}">
-      <xacro:vlp16_mount topic="${topic}" tower="${tower}" angle="${angle}" prefix="${prefix}" parent_link="${parent}" >
-        <origin xyz="$(optenv DINGO_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv DINGO_LASER_3D_RPY 0 0 0)" />
+    <xacro:if value="${model == 'vlp16'}">
+      <xacro:vlp16_mount topic="${topic}" tower="${tower}" angle="${angle}" prefix="${prefix}" parent_link="${parent}" frame_id="${frame}">
+        <origin xyz="${xyz}" rpy="${rpy}" />
       </xacro:vlp16_mount>
     </xacro:if>
     <!-- Velodyne HDL-32E -->
-    <xacro:if value="${lidar_3d_model == 'hdl32e'}">
-      <xacro:hdl32e_mount topic="${topic}" tower="${tower}" angle="${angle}" prefix="${prefix}" parent_link="${parent}" >
-        <origin xyz="$(optenv DINGO_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv DINGO_LASER_3D_RPY 0 0 0)" />
+    <xacro:if value="${model == 'hdl32e'}">
+      <xacro:hdl32e_mount topic="${topic}" tower="${tower}" angle="${angle}" prefix="${prefix}" parent_link="${parent}" frame_id="${frame}">
+        <origin xyz="${xyz}" rpy="${rpy}" />
+      </xacro:hdl32e_mount>
+    </xacro:if>
+  </xacro:if>
+
+  <xacro:if value="$(optenv DINGO_LASER_3D_SECONDARY 0)">
+    <xacro:property name="mount"  value="$(optenv DINGO_LASER_3D_SECONDARY_MOUNT rear)" />
+    <xacro:property name="topic"  value="$(optenv DINGO_LASER_3D_SECONDARY_TOPIC rear/points)" />
+    <xacro:property name="tower"  value="$(optenv DINGO_LASER_3D_SECONDARY_TOWER 1)" />
+    <xacro:property name="angle"  value="$(optenv DINGO_LASER_3D_SECONDARY_ANGLE 0)" />
+    <xacro:property name="prefix" value="$(optenv DINGO_LASER_3D_SECONDARY_PREFIX ${mount})" />
+    <xacro:property name="parent" value="$(optenv DINGO_LASER_3D_SECONDARY_PARENT ${mount}_mount)" />
+    <xacro:property name="model"  value="$(optenv DINGO_LASER_3D_SECONDARY_MODEL vlp16)" />
+    <xacro:property name="frame"  value="$(optenv DINGO_LASER_3D_SECONDARY_FRAME secondary_velodyne)" />
+    <xacro:property name="xyz"    value="$(optenv DINGO_LASER_3D_SECONDARY_OFFSET 0 0 0)" />
+    <xacro:property name="rpy"    value="$(optenv DINGO_LASER_3D_SECONDARY_RPY 0 0 ${M_PI})" />
+    <!-- Velodyne VLP16 -->
+    <xacro:if value="${model == 'vlp16'}">
+      <xacro:vlp16_mount topic="${topic}" tower="${tower}" angle="${angle}" prefix="${prefix}" parent_link="${parent}" frame_id="${frame}">
+        <origin xyz="${xyz}" rpy="${rpy}" />
+      </xacro:vlp16_mount>
+    </xacro:if>
+    <!-- Velodyne HDL-32E -->
+    <xacro:if value="${model == 'hdl32e'}">
+      <xacro:hdl32e_mount topic="${topic}" tower="${tower}" angle="${angle}" prefix="${prefix}" parent_link="${parent}" frame_id="${frame}">
+        <origin xyz="${xyz}" rpy="${rpy}" />
       </xacro:hdl32e_mount>
     </xacro:if>
   </xacro:if>
@@ -160,26 +188,25 @@
     Note: If two realsense's are included, both must be the same model type.
   -->
   <xacro:include filename="$(find dingo_description)/urdf/accessories/intel_realsense.urdf.xacro" />
-  <xacro:property name="realsense_enabled" value="$(optenv DINGO_REALSENSE 0)"/>
   <!-- Primary Realsense Parameters -->
-  <xacro:property name="rs_model"   default="$(optenv DINGO_REALSENSE_MODEL d435)"/>
-  <xacro:property name="rs_topic"   default="$(optenv DINGO_REALSENSE_TOPIC realsense)" />
-  <xacro:property name="rs_mount"   default="$(optenv DINGO_REALSENSE_MOUNT front)" />
-  <xacro:property name="rs_prefix"  default="$(optenv DINGO_REALSENSE_PREFIX ${rs_mount})" />
-  <xacro:property name="rs_parent"  default="$(optenv DINGO_REALSENSE_PARENT ${rs_mount}_mount)" />
-  <xacro:property name="rs_xyz"     default="$(optenv DINGO_REALSENSE_OFFSET 0 0 0)" />
-  <xacro:property name="rs_rpy"     default="$(optenv DINGO_REALSENSE_RPY 0 0 0)" />
+  <xacro:property name="rs_enabled" value="$(optenv DINGO_REALSENSE 0)"/>
+  <xacro:property name="rs_model"   value="$(optenv DINGO_REALSENSE_MODEL d435)"/>
+  <xacro:property name="rs_topic"   value="$(optenv DINGO_REALSENSE_TOPIC realsense)" />
+  <xacro:property name="rs_mount"   value="$(optenv DINGO_REALSENSE_MOUNT front)" />
+  <xacro:property name="rs_prefix"  value="$(optenv DINGO_REALSENSE_PREFIX ${rs_mount})" />
+  <xacro:property name="rs_parent"  value="$(optenv DINGO_REALSENSE_PARENT ${rs_mount}_mount)" />
+  <xacro:property name="rs_xyz"     value="$(optenv DINGO_REALSENSE_OFFSET 0 0 0)" />
+  <xacro:property name="rs_rpy"     value="$(optenv DINGO_REALSENSE_RPY 0 0 0)" />
   <!-- Secondary Realsense Parameters -->
-  <xacro:property name="rs_secondary_enabled" default="$(optenv DINGO_REALSENSE_SECONDARY 0)"/>
-  <xacro:property name="rs_secondary_model"   default="$(optenv DINGO_REALSENSE_SECONDARY_MODEL d435)"/>
-  <xacro:property name="rs_secondary_topic"   default="$(optenv DINGO_REALSENSE_SECONDARY_TOPIC realsense_secondary)" />
-  <xacro:property name="rs_secondary_mount"   default="$(optenv DINGO_REALSENSE_SECONDARY_MOUNT rear)" />
-  <xacro:property name="rs_secondary_prefix"  default="$(optenv DINGO_REALSENSE_SECONDARY_PREFIX ${rs_secondary_mount})" />
-  <xacro:property name="rs_secondary_parent"  default="$(optenv DINGO_REALSENSE_SECONDARY_PARENT ${rs_secondary_mount}_mount)" />
-  <xacro:property name="rs_secondary_xyz"     default="$(optenv DINGO_REALSENSE_SECONDARY_OFFSET 0 0 0)" />
-  <xacro:property name="rs_secondary_rpy"     default="$(optenv DINGO_REALSENSE_SECONDARY_RPY 0 0 ${M_PI})" />
+  <xacro:property name="rs_secondary_enabled" value="$(optenv DINGO_REALSENSE_SECONDARY 0)"/>
+  <xacro:property name="rs_secondary_model"   value="$(optenv DINGO_REALSENSE_SECONDARY_MODEL d435)"/>
+  <xacro:property name="rs_secondary_topic"   value="$(optenv DINGO_REALSENSE_SECONDARY_TOPIC realsense_secondary)" />
+  <xacro:property name="rs_secondary_mount"   value="$(optenv DINGO_REALSENSE_SECONDARY_MOUNT rear)" />
+  <xacro:property name="rs_secondary_prefix"  value="$(optenv DINGO_REALSENSE_SECONDARY_PREFIX ${rs_secondary_mount})" />
+  <xacro:property name="rs_secondary_parent"  value="$(optenv DINGO_REALSENSE_SECONDARY_PARENT ${rs_secondary_mount}_mount)" />
+  <xacro:property name="rs_secondary_xyz"     value="$(optenv DINGO_REALSENSE_SECONDARY_OFFSET 0 0 0)" />
+  <xacro:property name="rs_secondary_rpy"     value="$(optenv DINGO_REALSENSE_SECONDARY_RPY 0 0 ${M_PI})" />
   <!-- Includes Required for `realsense_sensor` -->
-  <xacro:property name="rs_model"   default="$(optenv DINGO_REALSENSE_MODEL d435)"/>
   <xacro:if value="${rs_model == 'd435'}">
     <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
   </xacro:if>
@@ -193,20 +220,22 @@
     <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
   </xacro:if>
 
-  <xacro:if value="${realsense_enabled}">
+  <xacro:if value="${rs_enabled}">
     <xacro:realsense_sensor rs_model="${rs_model}"
                             prefix="${rs_prefix}"
                             parent="${rs_parent}"
-                            topic="${rs_topic}">
+                            topic="${rs_topic}"
+                            include="0">
       <origin xyz="${rs_xyz}" rpy="${rs_rpy}"/>
     </xacro:realsense_sensor>
   </xacro:if>
 
-  <xacro:if value="${realsense_secondary_enabled}">
+  <xacro:if value="${rs_secondary_enabled}">
     <xacro:realsense_sensor rs_model="${rs_secondary_model}"
                             prefix="${rs_secondary_prefix}"
                             parent="${rs_secondary_parent}"
-                            topic="${rs_secondary_topic}">
+                            topic="${rs_secondary_topic}"
+                            include="0">
       <origin xyz="${rs_secondary_xyz}" rpy="${rs_secondary_rpy}"/>
     </xacro:realsense_sensor>
   </xacro:if>

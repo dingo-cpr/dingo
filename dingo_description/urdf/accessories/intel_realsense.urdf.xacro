@@ -5,9 +5,11 @@
   gazebo plugin to simulate data from the camera
 -->
 
-<!-- IMPORTANT NOTE:
-  As of Sept. 2022, due to limitations with the 'realsense2_description' package (see
-  realsense2_description/urdf/_materials.xacro.urdf), the following files must be
+<!-- IMPORTANT NOTE FOR MULTIPLE REALSENSES:
+  As of Sept. 2022, due to limitations with the 'realsense2_description' package 
+  (see realsense2_description/urdf/_materials.xacro.urdf):
+   the include parameter 
+  must be set to FALSE, and the following files must be
   included in the parent xacro file that will include this one:
   '''
   <xacro:if value="${rs_model == 'd435'}">
@@ -35,7 +37,23 @@
                width:=680
                height:=480
                update_rate:=30
+               include:=1
                *origin">
+
+    <xacro:if value="${include}">
+      <xacro:if value="${rs_model == 'd435'}">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+      </xacro:if>
+      <xacro:if value="${rs_model == 'd435i'}">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+      </xacro:if>
+      <xacro:if value="${rs_model == 'd415'}">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
+      </xacro:if>
+      <xacro:if value="${rs_model == 'd455'}">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+      </xacro:if>
+    </xacro:if>
 
     <xacro:macro name="realsense_gazebo" params="
               prefix=front              model=d4

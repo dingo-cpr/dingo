@@ -1,7 +1,7 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
   <xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro" />
 
-  <xacro:macro name="hdl32e_mount" params="prefix parent_link topic tower angle:=0.0 *origin">
+  <xacro:macro name="hdl32e_mount" params="prefix parent_link topic tower frame_id:=velodyne angle:=0.0 *origin">
     <xacro:if value="${tower}">
       <link name="${prefix}_hdl32e_mount">
         <visual>
@@ -26,7 +26,7 @@
       </joint>
 
       <!-- Velodyne HDL-32E Macro treats Y-axis as forward in pointcloud --> 
-      <xacro:HDL-32E parent="${prefix}_hdl32e_mount" topic="${topic}">
+      <xacro:HDL-32E parent="${prefix}_hdl32e_mount" topic="${topic}" name="${frame_id}">
         <origin xyz="0 0 0.081" rpy="0 0 ${angle - 1.5707}"/>
       </xacro:HDL-32E>
     </xacro:if>
@@ -38,7 +38,7 @@
         <xacro:insert_block name="origin" />      
       </joint>
       <!-- Velodyne HDL-32E Macro treats Y-axis as forward in pointcloud --> 
-      <xacro:HDL-32E parent="${prefix}_hdl32e_mount" topic="${topic}">
+      <xacro:HDL-32E parent="${prefix}_hdl32e_mount" topic="${topic}" name="${frame_id}">
         <origin xyz="0 0 0" rpy="0 0 ${angle - 1.5707}"/>
       </xacro:HDL-32E>
     </xacro:unless>
