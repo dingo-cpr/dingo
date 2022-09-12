@@ -8,9 +8,9 @@
 <!-- IMPORTANT NOTE FOR MULTIPLE REALSENSES:
   As of Sept. 2022, due to limitations with the 'realsense2_description' package 
   (see realsense2_description/urdf/_materials.xacro.urdf):
-   the include parameter 
-  must be set to FALSE, and the following files must be
-  included in the parent xacro file that will include this one:
+    1. the include parameter must be set to FALSE, and
+    2. the following files must be included in the parent xacro file that will 
+        include this one:
   '''
   <xacro:if value="${rs_model == 'd435'}">
     <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
@@ -25,8 +25,12 @@
     <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
   </xacro:if>
   '''
+
   Multiple inclusions of any of these files (even when namespaced), will define
   the materials at a global level, violating uniqueness property of xacro materials.
+
+  Therefore, it is not possible at this time to have different models of Realsense 
+  cameras on the same URDF, without modifying the `realsense2_description` package.
  -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="realsense_sensor" params="
