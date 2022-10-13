@@ -3,8 +3,12 @@
 
 Header header
 
+# Hardware ID
+uint8 HARDWARE_ID_D100=0
+uint8 HARDWARE_ID_D150=1
+uint8 hardware_id
+
 # Commit of firmware source.
-string hardware_id
 string firmware_version
 
 # Times since MCU power-on and MCU rosserial connection, respectively.
@@ -23,9 +27,11 @@ bool drivers_active         # False when a stop is asserted to the motor drivers
 bool external_stop_present  # True indicates a external stop has been plugged in.
 
 # Power connected readings
-bool shore_power_connected  # Indicates if AC power is connected.
-bool battery_connected      # Indicates if battery is connected.
-bool power_12v_user_nominal # Indicates if the 12V user power is good.
+bool shore_power_connected    # Indicates if AC power is connected.
+bool shore_power_ov           # Indicates if AC power is causing overvoltage.
+bool battery_connected        # Indicates if battery is connected.
+bool power_12v_user_nominal   # Indicates if the 12V user power is good.
+bool manual_charger_connected # Indicates if manual charger is connected.
 
 # Voltage rails, in volts
 # Averaged over the message period
