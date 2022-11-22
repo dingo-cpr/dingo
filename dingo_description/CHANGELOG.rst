@@ -2,8 +2,8 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.12 (2022-11-22)
+-------------------
 * Updated Realsense comments and include parameter
 * Fixed typo in material name
 * Added secondary realsense
