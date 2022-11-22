@@ -2,6 +2,25 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Customizable PACS riser heights
+* Added Flir Blackfly
+* Updated Realsense comments and include parameter
+* Fixed typo in material name
+* Added secondary realsense
+* Added README with all URDF environment variables
+* Force upper case for environment variables (`#21 <https://github.com/dingo-cpr/dingo/issues/21>`_)
+  * Added PACS
+  * Changed enable envvar name
+  * Added EOL
+  * All caps for envvars
+* Added PACS (`#20 <https://github.com/dingo-cpr/dingo/issues/20>`_)
+  * Added PACS
+  * Changed enable envvar name
+  * Added EOL
+* Contributors: Luis Camero, luis-camero
+
 0.1.11 (2022-05-17)
 -------------------
 * Added Velodyne HDL32E and Microstrain GX5
