@@ -2,8 +2,8 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.0 (2022-11-22)
+------------------
 * Customizable PACS riser heights
 * Added Flir Blackfly
 * Updated Realsense comments and include parameter
