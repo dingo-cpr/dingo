@@ -15,6 +15,8 @@
   <depend>robot_state_publisher</depend>
   <depend>urdf</depend>
   <depend>xacro</depend>
+  <exec_depend>fath_pivot_mount_description</exec_depend>
+  <exec_depend>flir_camera_description</exec_depend>
   <exec_depend>lms1xx</exec_depend>
   <exec_depend>realsense2_description</exec_depend>
   <exec_depend>velodyne_description</exec_depend>

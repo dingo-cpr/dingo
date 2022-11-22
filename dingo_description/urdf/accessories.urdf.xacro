@@ -240,6 +240,42 @@
     </xacro:realsense_sensor>
   </xacro:if>
 
+  <!-- BlackflyS Camera Primary and Secondary -->
+  <xacro:include filename="$(find dingo_description)/urdf/accessories/flir_blackfly_mount.urdf.xacro"/>
+  <xacro:arg name="blackfly_enabled"                  default="$(optenv DINGO_BLACKFLY 0)"/>
+  <xacro:arg name="blackfly_mount_enabled"            default="$(optenv DINGO_BLACKFLY_MOUNT_ENABLED 1)"/>
+  <xacro:arg name="blackfly_mount_angle"              default="$(optenv DINGO_BLACKFLY_MOUNT_ANGLE 0)"/>
+  <xacro:arg name="blackfly_prefix"                   default="$(optenv DINGO_BLACKFLY_PREFIX blackfly)"/>
+  <xacro:arg name="blackfly_parent"                   default="$(optenv DINGO_BLACKFLY_PARENT top_plate_link)"/>
+  <xacro:arg name="blackfly_xyz"                      default="$(optenv DINGO_BLACKFLY_XYZ 0 0 0)"/>
+  <xacro:arg name="blackfly_rpy"                      default="$(optenv DINGO_BLACKFLY_RPY 0 0 0)"/>
+
+  <xacro:arg name="blackfly_secondary_enabled"        default="$(optenv DINGO_BLACKFLY_SECONDARY 0)"/>
+  <xacro:arg name="blackfly_secondary_mount_enabled"  default="$(optenv DINGO_BLACKFLY_SECONDARY_MOUNT_ENABLED 1)"/>
+  <xacro:arg name="blackfly_secondary_mount_angle"    default="$(optenv DINGO_BLACKFLY_SECONDARY_MOUNT_ANGLE 0)"/>
+  <xacro:arg name="blackfly_secondary_prefix"         default="$(optenv DINGO_BLACKFLY_SECONDARY_PREFIX blackfly_secondary)"/>
+  <xacro:arg name="blackfly_secondary_parent"         default="$(optenv DINGO_BLACKFLY_SECONDARY_PARENT top_plate_link)"/>
+  <xacro:arg name="blackfly_secondary_xyz"            default="$(optenv DINGO_BLACKFLY_SECONDARY_XYZ 0 0 0)"/>
+  <xacro:arg name="blackfly_secondary_rpy"            default="$(optenv DINGO_BLACKFLY_SECONDARY_RPY 0 0 0)"/>
+
+  <xacro:if value="$(arg blackfly_enabled)">
+    <xacro:flir_blackfly_mount prefix="$(arg blackfly_prefix)"
+                                parent="$(arg blackfly_parent)"
+                                mount_enabled="$(arg blackfly_mount_enabled)"
+                                mount_angle="$(arg blackfly_mount_angle)">
+      <origin xyz="$(arg blackfly_xyz)" rpy="$(arg blackfly_rpy)"/>
+    </xacro:flir_blackfly_mount>
+  </xacro:if>
+
+  <xacro:if value="$(arg blackfly_secondary_enabled)">
+    <xacro:flir_blackfly_mount prefix="$(arg blackfly_secondary_prefix)"
+                                parent="$(arg blackfly_secondary_parent)"
+                                mount_enabled="$(arg blackfly_secondary_mount_enabled)"
+                                mount_angle="$(arg blackfly_secondary_mount_angle)">
+      <origin xyz="$(arg blackfly_secondary_xyz)" rpy="$(arg blackfly_secondary_rpy)"/>
+    </xacro:flir_blackfly_mount>
+  </xacro:if>
+
   <!--
     Add Microstrain IMU. By default the DINGO comes equipped with an IMU linked to "imu_link". These extra
     optional microstrain IMU's will be added to another frame, by default, "microstrain_link".
