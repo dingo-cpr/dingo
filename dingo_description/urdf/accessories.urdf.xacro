@@ -282,7 +282,7 @@
   -->
   <xacro:if value="$(optenv DINGO_IMU_MICROSTRAIN 0)">
     <xacro:property name="frame"  value="$(optenv DINGO_IMU_MICROSTRAIN_LINK microstrain_link)"/>
-    <xacro:property name="parent" value="$(optenv DINGO_IMU_MICROSTRAIN_PARENT imu_link)"/>
+    <xacro:property name="parent" value="$(optenv DINGO_IMU_MICROSTRAIN_PARENT base_link)"/>
     <xacro:property name="xyz"    value="$(optenv DINGO_IMU_MICROSTRAIN_OFFSET 0 0 0)"/>
     <xacro:property name="rpy"    value="$(optenv DINGO_IMU_MICROSTRAIN_RPY 0 0 0)"/>
     <link name="${frame}" />
