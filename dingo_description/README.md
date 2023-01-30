@@ -13,7 +13,7 @@ export M_PI=3.14159265359
 ```
 ###### Description
 ```bash
-export DINGO_PACS_ENABLED=0
+export DINGO_PACS_ENABLED=1
 export DINGO_URDF_EXTRAS=empty.urdf
 ```
 ###### Launch
@@ -27,7 +27,7 @@ You can add two lidar scans and select between the `lms1xx` and `ust10`.
 
 #### Primary Laser
 ```bash
-export DINGO_LASER=0
+export DINGO_LASER=1
 export DINGO_LASER_MODEL='lms1xx' # or 'ust10'
 ```
 ###### Launch
@@ -49,7 +49,7 @@ export DINGO_LASER_RPY='0 0 0'
 
 #### Secondary Laser:
 ```bash
-export DINGO_LASER_SECONDARY=0
+export DINGO_LASER_SECONDARY=1
 export DINGO_LASER_SECONDARY_MODEL='lms1xx' # or 'ust10'
 ```
 ###### Launch
@@ -70,7 +70,7 @@ export DINGO_LASER_SECONDARY_RPY='0 0 ${M_PI}'
 
 ## 3D Laser
 ```bash
-export DINGO_LASER_3D=0
+export DINGO_LASER_3D=1
 export DINGO_LASER_3D_MODEL='vlp16'
 ```
 ###### Launch
@@ -91,7 +91,7 @@ export DINGO_LASER_3D_RPY='0 0 0'
 
 ## Realsense
 ```bash
-export DINGO_REALSENSE=0
+export DINGO_REALSENSE=1
 export DINGO_REALSENSE_MODEL='d435' # or 'd435i', 'd415', 'd455', 'l515'
 ```
 ###### Launch
@@ -107,7 +107,7 @@ export DINGO_REALSENSE_RPY='0 0 0'
 
 ## Microstrain IMU
 ```bash
-export DINGO_IMU_MICROSTRAIN=0
+export DINGO_IMU_MICROSTRAIN=1
 ```
 ###### Launch
 ```bash
