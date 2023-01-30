@@ -2,6 +2,11 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Change Microstrain IMU default parent link from imu_link to base_link
+* Contributors: Joey Yang
+
 0.2.0 (2022-11-22)
 ------------------
 * Customizable PACS riser heights
