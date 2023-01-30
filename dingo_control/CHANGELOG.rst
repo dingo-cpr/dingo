@@ -2,6 +2,9 @@
 Changelog for package dingo_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.12 (2022-11-22)
+-------------------
+
 0.1.11 (2022-05-17)
 -------------------
 * Enable subst_value in dingo_config_extras
