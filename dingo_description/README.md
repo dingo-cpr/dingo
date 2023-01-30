@@ -1,6 +1,12 @@
-# Dingo Accessories Environment Variables
+# Dingo Description
+To facilitate editing payloads and other features of the Dingo, we use the following environment variables. 
 
-## General
+Every sensor has three types of environment variables: 
+1. **Enable**: these will add the sensor to the URDF and start the launch file. 
+2. **Launch**: these correspond to parameters exclusively in the launch file.
+3. **Description**: these correspond to parameters excluvesively in the URDF.
+
+## Dingo Variables
 ```bash
 export DINGO_OMNI=0
 export M_PI=3.14159265359
