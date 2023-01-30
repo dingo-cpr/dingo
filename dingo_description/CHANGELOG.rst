@@ -2,8 +2,8 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2023-01-30)
+------------------
 * Change Microstrain IMU default parent link from imu_link to base_link
 * Contributors: Joey Yang
 
