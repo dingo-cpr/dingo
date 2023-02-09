@@ -22,6 +22,25 @@ export DINGO_MOTOR_PARAMS='base'
 export DINGO_MAG_CONFIG=$(catkin_find dingo_base config/mag_config_default.yaml --first-only)
 ```
 
+## PACS
+Enabling the PACS system overwrites the standard mounting locations (front_mount, front_a_mount,..., rear_mount, rear_a_mount,...,etc.) with mounting locations C01, C02,..., C06, etc. These mounting locations are at level 0 and the middle row (the only area of the Dingo that has mounting holes).
+
+A riser (an entire plate with a 5x6 grid of mounting locations) can be added using the `DINGO_PACS_RISER` variable. Specify the height at which the riser will be added. For example, adding a PACS riser at level 1 will add a riser with 10 cm standoffs: `export DINGO_PACS_RISER=1`. When a PACS riser is added at level 1, a grid of mounting locations named A11, A12,..., B11, B12,...,E16. Notice that the middle character in the naming scheme corresponds to the height. 
+
+Adding a bracket at any location is also done via environment variables. Brackets are thin plate adapters that allow a wide selection of sensors to be added to the existing grid. To add a bracket to the A11 location, use `DINGO_A11_BRACKET_ENABLED=1`. 
+```bash
+# Enable PACS
+export DINGO_PACS_ENABLED=1
+# Add Riser at with 10 cm Height
+export DINGO_PACS_RISER=1 # Adds riser at Level 1 (i.e. 10 cm), each level adds another 10 cm
+# Add Bracket at A11 Location
+export DINGO_A11_BRACKET_ENABLED=1
+export DINGO_A11_BRACKET_TYPE=horizontal # or horizontal_large or vertical
+export DINGO_A11_BRACKET_XYZ="0 0 0"
+export DINGO_A11_BRACKET_RPY="0 0 0"
+export DINGO_A11_BRACKET_EXTENSION="0" # distance from surface of plate/riser to surface of bracket
+```
+
 ## 2D Laser Scan
 You can add two lidar scans and select between the `lms1xx` and `ust10`.
 
