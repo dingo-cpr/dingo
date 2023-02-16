@@ -186,45 +186,43 @@
       - rear b
       - rear
   -->
-  <xacro:unless value="${pacs_enabled}">
-    <link name="front_mount"/>
-    <link name="front_b_mount"/>
-    <link name="front_c_mount"/>
-    <link name="rear_mount"/>
-    <link name="rear_b_mount"/>
-    <link name="rear_c_mount"/>
+  <link name="front_mount"/>
+  <link name="front_b_mount"/>
+  <link name="front_c_mount"/>
+  <link name="rear_mount"/>
+  <link name="rear_b_mount"/>
+  <link name="rear_c_mount"/>
 
-    <joint name="front_c_mount_joint" type="fixed">
-      <origin xyz="0.040 0 0.064263" rpy="0 0 0" />
-      <parent link="chassis_link"/>
-      <child link="front_c_mount" />
-    </joint>
-    <joint name="front_b_mount_joint" type="fixed">
-      <origin xyz="0.080 0 0" rpy="0 0 0" />
-      <parent link="front_c_mount"/>
-      <child link="front_b_mount" />
-    </joint>
-    <joint name="front_mount_joint" type="fixed">
-      <origin xyz="0.080 0 0" rpy="0 0 0" />
-      <parent link="front_b_mount"/>
-      <child link="front_mount" />
-    </joint>
-    <joint name="rear_c_mount_joint" type="fixed">
-      <origin xyz="-0.040 0 0.064263" rpy="0 0 0" />
-      <parent link="chassis_link"/>
-      <child link="rear_c_mount" />
-    </joint>
-    <joint name="rear_b_mount_joint" type="fixed">
-      <origin xyz="-0.080 0 0" rpy="0 0 0" />
-      <parent link="rear_c_mount"/>
-      <child link="rear_b_mount" />
-    </joint>
-    <joint name="rear_moint_joint" type="fixed">
-      <origin xyz="-0.080 0 0" rpy="0 0 0" />
-      <parent link="rear_b_mount"/>
-      <child link="rear_mount" />
-    </joint>
-  </xacro:unless>
+  <joint name="front_c_mount_joint" type="fixed">
+    <origin xyz="0.040 0 0.064263" rpy="0 0 0" />
+    <parent link="chassis_link"/>
+    <child link="front_c_mount" />
+  </joint>
+  <joint name="front_b_mount_joint" type="fixed">
+    <origin xyz="0.080 0 0" rpy="0 0 0" />
+    <parent link="front_c_mount"/>
+    <child link="front_b_mount" />
+  </joint>
+  <joint name="front_mount_joint" type="fixed">
+    <origin xyz="0.080 0 0" rpy="0 0 0" />
+    <parent link="front_b_mount"/>
+    <child link="front_mount" />
+  </joint>
+  <joint name="rear_c_mount_joint" type="fixed">
+    <origin xyz="-0.040 0 0.064263" rpy="0 0 0" />
+    <parent link="chassis_link"/>
+    <child link="rear_c_mount" />
+  </joint>
+  <joint name="rear_b_mount_joint" type="fixed">
+    <origin xyz="-0.080 0 0" rpy="0 0 0" />
+    <parent link="rear_c_mount"/>
+    <child link="rear_b_mount" />
+  </joint>
+  <joint name="rear_moint_joint" type="fixed">
+    <origin xyz="-0.080 0 0" rpy="0 0 0" />
+    <parent link="rear_b_mount"/>
+    <child link="rear_mount" />
+  </joint>
 
   <!--
     Mounting point for accessories on the front bumper.
