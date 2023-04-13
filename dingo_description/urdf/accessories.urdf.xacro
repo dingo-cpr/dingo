@@ -10,6 +10,7 @@
     dingo_base/launch/base.launch
   -->
 
+  <xacro:include filename="$(find sick_tim)/urdf/sick_tim.urdf.xacro" />
   <xacro:include filename="$(find dingo_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
   <xacro:include filename="$(find dingo_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find dingo_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
@@ -19,6 +20,7 @@
     Add a lidar sensor.  By default this is a SICK LMS1xx but can be changed with the
     DINGO_LASER_MODEL environment variable. Valid model designations are:
     - lms1xx (default) :: SICK LMS1xx
+    - tim551           :: SICK TIM551
     - ust10            :: Hokuyo UST10
   -->
   <xacro:if value="$(optenv DINGO_LASER 0)">
@@ -57,6 +59,17 @@
           <child link="${prefix}_laser"/>
         </joint>
       </xacro:unless>
+    </xacro:if>
+
+    <!-- Sick TIM -->
+    <xacro:if value="${lidar_model == 'tim551'}">
+      <xacro:property name="prefix" value="$(optenv DINGO_LASER_PREFIX tim551)" />
+      <xacro:sick_tim551 name="${prefix}" ros_topic="${topic}"/>
+      <joint name="${prefix}_mount_link_joint" type="fixed">
+        <origin xyz="$(optenv DINGO_LASER_OFFSET 0 0 0)" rpy="$(optenv DINGO_LASER_RPY 0 0 0)"/>
+        <parent link="${parent}"/>
+        <child link="${prefix}_mount_link"/>
+      </joint>
     </xacro:if>
 
     <!-- Hokuyo UST10 -->
@@ -108,6 +121,17 @@
           <child link="${prefix}_laser"/>
         </joint>
       </xacro:unless>
+    </xacro:if>
+
+    <!-- SICK Tim -->
+    <xacro:if value="${lidar_model == 'tim551'}">
+      <xacro:property name="prefix" value="$(optenv DINGO_LASER_SECONDARY_PREFIX tim551_2)" />
+      <xacro:sick_tim551 name="${prefix}" ros_topic="${topic}"/>
+      <joint name="${prefix}_mount_link_joint" type="fixed">
+        <origin xyz="$(optenv DINGO_LASER_SECONDARY_OFFSET 0 0 0)" rpy="$(optenv DINGO_LASER_SECONDARY_RPY 0 0 3.14159)"/>
+        <parent link="${parent}"/>
+        <child link="${prefix}_mount_link"/>
+      </joint>
     </xacro:if>
 
     <!-- Secondary Hokuyo UST10 -->

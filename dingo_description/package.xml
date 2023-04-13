@@ -19,6 +19,7 @@
   <exec_depend>flir_camera_description</exec_depend>
   <exec_depend>lms1xx</exec_depend>
   <exec_depend>realsense2_description</exec_depend>
+  <exec_depend>sick_tim</exec_depend>
   <exec_depend>velodyne_description</exec_depend>
 
   <export>
