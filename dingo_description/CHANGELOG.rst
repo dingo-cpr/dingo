@@ -2,8 +2,8 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.1 (2023-04-20)
+------------------
 * Adding Sick TIM551 lidar
 * Standard mounting locations persist in PACS
 * Update README.md
