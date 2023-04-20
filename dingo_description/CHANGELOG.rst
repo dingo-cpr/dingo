@@ -2,6 +2,14 @@
 Changelog for package dingo_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Adding Sick TIM551 lidar
+* Standard mounting locations persist in PACS
+* Update README.md
+* Update README
+* Contributors: Hilary Luo, luis-camero
+
 0.3.0 (2023-01-30)
 ------------------
 * Change Microstrain IMU default parent link from imu_link to base_link
